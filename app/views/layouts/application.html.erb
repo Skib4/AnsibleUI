@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ansible User Interface</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Ansible User Interface</a>
+      </div>
+      <ul class="nav navbar-nav">
+
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+
+    <%= yield %>
+
+  </div>
+
+</body>
+</html>
