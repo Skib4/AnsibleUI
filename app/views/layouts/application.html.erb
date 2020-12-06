@@ -13,8 +13,12 @@
   <!-- Ikonka zakładki -->
   <link rel="icon" href="https://docs.ansible.com/ansible/latest/_static/images/logo_invert.png">
 </head>
-
 <body>
+  <% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
 <%= yield %>
 </body>
 </html>

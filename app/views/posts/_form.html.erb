@@ -1,0 +1,32 @@
+<!-- partial czyli kod który się powtarza -->
+<!-- Sprawdzamy czy są błędy --->
+<% if @post.errors.present? %>
+  <div class="alert alert-danger">
+    <p>Wystąpiły następujące błędy:</p>
+    <ol>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message.titleize %></li>
+      <% end %>
+    </ol>
+  </div>
+<% end %>
+
+<%= form_for @post do |f| %>
+<div class="form-group">
+  <%= f.label :title, "Tytuł" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :author, "Autor" %>
+  <%= f.text_field :author, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :body, "Treść" %>
+  <%= f.text_area :body, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :published, "Opublikowano" %>
+  <%= f.check_box :published, class: "form-control" %>
+</div>
+<%= f.submit button_name, class: "btn btn-primary" %>
+<% end %>

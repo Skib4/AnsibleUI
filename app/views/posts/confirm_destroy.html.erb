@@ -1,0 +1,11 @@
+<!-- ponizej wyswietlamy sam wpis --->
+<h3><%= @post.title %></h3>
+<%= simple_format @post.body %>
+
+<p>Czy na pewno chcesz usunąć?</p>
+<p>
+<!-- tak - wywolanie prawdziwej akcji usuniecia z kontrolera --->
+  <%= link_to "Tak", post_path(@post), method: :delete, class: "btn btn-danger" %>
+<!-- nie - skierowanie do listy wszystkich postow ---> 
+  <%= link_to "Nie", posts_path, class: "btn btn-default" %>
+</p>
