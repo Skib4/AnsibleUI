@@ -1,0 +1,11 @@
+<!-- ponizej wyswietlamy sam wpis --->
+<h3><%= @playbook.author %></h3>
+<%= simple_format @playbook.body %>
+
+<p>Czy na pewno chcesz usunąć?</p>
+<p>
+<!-- tak - wywolanie prawdziwej akcji usuniecia z kontrolera --->
+  <%= link_to "Tak", playbook_path(@playbook), method: :delete, class: "btn btn-danger" %>
+<!-- nie - skierowanie do listy wszystkich postow --->
+  <%= link_to "Nie", playbooks_path, class: "btn btn-default" %>
+</p>

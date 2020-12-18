@@ -1,65 +1,56 @@
+<h3> Lista playbooków </h3>
+
+<p><%= link_to "Dodaj nowy wpis", new_playbook_path, class: "btn btn-success" %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Autor</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @playbooks.each do |playbook| %>
+      <tr>
+        <td><%= playbook.id %></td>
+        <td><%= playbook.author %></td>
+        <td><%= playbook.body %></td>
+        <td>
+          <%= link_to "Pokaż", playbooks_path(playbook), class: "btn btn-default btn-xs" %>
+          <%= link_to "Edytuj", edit_playbook_path(playbook), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Usuń", confirm_destroy_playbook_path(playbook), class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!---
+<!DOCTYPE html>
+<html>
+
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Strona główna</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-      <!--    <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-      --->
-          <li class="nav-item">
-            <a class="nav-link" href="<%= about_path %>" >O aplikacji </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= docs_path %>" >Dokumentacja</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= howto_path %>" >Jak używać aplikacji</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= privacy_path %>" >Warunki prywatności</a>
-          </li>
-          <!--
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-          --->
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Playbook</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="<%= newplaybook_path %>">Dodaj playbook</a>
-              <a class="dropdown-item" href="<%= editplaybook_path %>">Edytuj playbook</a>
-              <a class="dropdown-item" href="<%= showplaybook_path %>">Zarządzaj playbookami</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Host</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="<%= newhost_path %>">Dodaj host</a>
-              <a class="dropdown-item" href="<%= edithost_path %>">Edytuj host</a>
-              <a class="dropdown-item" href="<%= showhost_path %>">Wyświetl hosty</a>
-            </div>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Szukaj..." aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
-        </form>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Blog</a>
       </div>
-    </nav>
+      <ul class="nav navbar-nav">
+        <li class="active" <a href="#">Strona główna</a></li>
+        <li <a href="#">O aplikacji</a></li>
+        <li <a href="#">Dokumentacja Ansible</a></li>
+        <li <a href="#">Podręcznik użytkownika</a></li>
+        <li <a href="#">Warunki prywatności</a></li>
+        <li <a href="#">Skontaktuj się</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
 
-<%= yield %>
-    <footer class="container">
-      <p>&copy; Adam Skibiński 2020</p>
-    </footer>
+    <%= yield %>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
-<script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
-  </body>
+  </div>
+
+</body>
+</html>
+--->

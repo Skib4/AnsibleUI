@@ -23,9 +23,18 @@ collection do
   get :published
 end
 end
-resources :hosts
-resources :playbooks
 
+resources :hosts do
+member do
+    get :confirm_destroy
+end
+end
+
+resources :playbooks do
+member do
+    get :confirm_destroy
+end
+end
 #get '/posts' => 'posts#index'
 #get '/posts/new' => 'posts#new'
 
