@@ -73,6 +73,7 @@ gem 'rails-i18n'
 gem 'devise'
 # widoki bootsrapowe dla devise
 gem 'devise-bootstrap-views'
+gem 'devise-i18n'
 # jquery
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'

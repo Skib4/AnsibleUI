@@ -1,4 +1,6 @@
 class HostsController < ApplicationController
+  before_action :authenticate_user!
+
 # wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
 def new
   @host = Host.new(author: session[:author])

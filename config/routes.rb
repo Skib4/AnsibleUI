@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-#  root 'posts#index'
-#  root 'users#sign_in'
-devise_scope :user do
-  root :to => 'devise/sessions#new'
-end
+  devise_scope :user do
+    root :to => 'devise/sessions#new'
+  end
 
 def after_sign_in_path_for(resource_or_scope)
   # your_path
@@ -17,7 +15,6 @@ end
 resources :posts do
 member do
     get :confirm_destroy
-
 end
 collection do
   get :published
@@ -28,13 +25,21 @@ resources :hosts do
 member do
     get :confirm_destroy
 end
+collection do
+  get :published
+end
 end
 
 resources :playbooks do
 member do
     get :confirm_destroy
 end
+collection do
+  get :published
 end
+end
+
+
 #get '/posts' => 'posts#index'
 #get '/posts/new' => 'posts#new'
 

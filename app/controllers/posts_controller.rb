@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
 #wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
   def new
     @post = Post.new(author: session[:author])
