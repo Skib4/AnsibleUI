@@ -1,0 +1,9 @@
+
+
+<%= form_with url: '/playbooks/wget'  do |f| %>
+   <div class="field">
+     <%= f.label :Link%>
+     <%= f.text_field :my_input %>
+   </div>
+   <%= f.submit "Pobierz", :class => "btn btn-primary" %>
+<% end %>

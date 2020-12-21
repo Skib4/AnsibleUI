@@ -33,6 +33,12 @@ class PlaybooksController < ApplicationController
     @playbooks = Playbook.all
   end
 
+  def wget
+    my_input = params['my_input']
+    system("wget -P /etc/ansible/playbooks #{my_input}")
+  end
+  helper_metodh :wget
+
 #  def published
 #    @playbooks = Playbook.where(published: true)
 #    render action: "index"
@@ -73,7 +79,7 @@ class PlaybooksController < ApplicationController
   #metoda zwraca hasha w którym atrybuty które chcemy masowo przypisać zostaną oznaczone jako bezpieczne
   # title, author, body i published sa oznaczone jako bezpieczne atrybuty
   def playbook_params
-    params.require(:playbook).permit(:author, :body)
+    params.require(:playbook).permit(:author, :body, :my_input)
   end
 
 end

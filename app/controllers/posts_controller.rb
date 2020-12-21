@@ -1,19 +1,19 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
-#wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
+# wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
   def new
     @post = Post.new(author: session[:author])
   end
 
-#metoda do obsługi zapisywania nowych postów
+# metoda do obsługi zapisywania nowych postów
   def create
-    #kazdy model Active Record w konstruktorze może przyjąć hasha z wartościami wszystkich atrybutów które chcielibyśmy przypisać przy tworzeniu obiektu
+    # kazdy model Active Record w konstruktorze może przyjąć hasha z wartościami wszystkich atrybutów które chcielibyśmy przypisać przy tworzeniu obiektu
     # strong parameters - oznacza które parametry są bezpieczne do przypisania w danym kontrolerze - tu przez metode post_params
     @post = Post.new(post_params)
     if @post.save
       @post.save
-      #Ustawiamy sesję/cookies aby zapamietac autorow
+      # Ustawiamy sesję/cookies aby zapamietac autorow
       session[:author] = @post.author
       # wartość wiadomości flashowej dodajemy w tym żądaniu lecz jej wartość zostanie wyświetlona w kolejnym (po przekierowaniu)
       flash[:notice] = "Post dodany pomyślnie"

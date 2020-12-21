@@ -77,3 +77,7 @@ gem 'devise-i18n'
 # jquery
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
+# obsluga plikow
+gem 'carrierwave'
+# do formularzy
+gem 'simple_form'
