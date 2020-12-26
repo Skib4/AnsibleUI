@@ -1,5 +1,3 @@
-<!-- partial czyli kod który się powtarza -->
-<!-- Sprawdzamy czy są błędy --->
 <% if @host.errors.present? %>
   <div class="alert alert-danger">
     <p>Wystąpiły następujące błędy:</p>
@@ -17,8 +15,16 @@
   <%= f.text_field :hostname, class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :address, "Adres" %>
-  <%= f.text_field :address, class: "form-control" %>
+  <%= f.label :ip_addr, "Adres" %>
+  <%= f.text_field :ip_addr, class: "form-control" %>
 </div>
+  <div class="form-group">
+    <%= f.label :description, "Opis" %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :ssh_port, "Port SSH" %>
+    <%= f.number_field :ssh_port, class: "form-control" %>
+  </div>
 <%= f.submit button_name, class: "btn btn-primary" %>
 <% end %>

@@ -1,72 +1,99 @@
 class HostsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  #
+  def index
+    @hosts = Host.all
+    respond_to do |format|
+      format.html { }
+      format.xml { }
+      format.json { render json: @hosts.map { |h| { id: h.id, hostname: h.hostname, ip_addr: h.ip_addr, ssh_port: h.ssh_port, description: h.description } } }
+    end
+  end
 
-# wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
 def new
-  @host = Host.new(author: session[:author])
+  @host = Host.new()
 end
 
-#metoda do obsługi zapisywania nowych hostów
 def create
-  #kazdy model Active Record w konstruktorze może przyjąć hasha z wartościami wszystkich atrybutów które chcielibyśmy przypisać przy tworzeniu obiektu
-  # strong parameters - oznacza które parametry są bezpieczne do przypisania w danym kontrolerze - tu przez metode post_params
+  @X =  params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port)
+  @hstn = @X['hostname']
+  @ip = @X['ip_addr']
+  @ssh = @X['ssh_port']
   @host = Host.new(host_params)
+
   if @host.save
     @host.save
-    #Ustawiamy sesję/cookies aby zapamietac hostname'y
-    session[:hostname] = @host.hostname
-    # wartość wiadomości flashowej dodajemy w tym żądaniu lecz jej wartość zostanie wyświetlona w kolejnym (po przekierowaniu)
+    File.open("/etc/ansible/hosts", "a") do |f|
+      f.write(@hstn +" "+@ip+" ansible_port="+@ssh+"\n")
+      f.close
+    end
+
     flash[:notice] = "Host dodany pomyślnie"
   else
     render action: 'new'
   end
-  redirect_to hosts_path
+    redirect_to hosts_path
 end
 
 def edit
   @host = Host.find(params[:id])
-  file = File.open("/etc/ansible/hosts")
-end
-
-def index
-  @hosts = Host.all
-end
-
-def published
-  @hosts = Host.where(published: true)
-  render action: "index"
 end
 
 def show
   @host = Host.find(params[:id])
 end
 
-def destroy
-  @host = Host.find(params[:id])
-  @host.destroy
-  flash[:notice] = "Usunięto hosta!"
-  redirect_to hosts_path
-end
+  def confirm_destroy
+     @host = Host.find(params[:id])
+  end
 
-def confirm_destroy
-  @host = Host.find(params[:id])
-end
+  def destroy
+    Host.find(params[:id]).destroy
 
-def update
+     if Host.find(params[:id]).destroy
+      flash[:notice] = "Usunięto hosta!"
+      system("rm -rf /etc/ansible/hosts")
+      Host.all.each do |host|
+        @hstn = host.hostname
+        @ip =  host.ip_addr
+        @ssh= host.ssh_port
+        File.open("/etc/ansible/hosts", "w+") do |f|
+          f.write(@hstn +" "+@ip+" ansible_port="+@ssh.to_s+"\n")
+          f.close
+        end
+        end
+      redirect_to hosts_path
+    else
+      flash[:notice] = "Blad usuwania"
+    end
+    end
+
+  def update
   @host = Host.find(params[:id])
     if @host.update_attributes(host_params)
       flash[:notice] = "Zedytowano hosta!"
+      system("rm -rf /etc/ansible/hosts")
+
+      Host.all.each do |host|
+        @hstn = host.hostname
+        @ip =  host.ip_addr
+        @ssh= host.ssh_port
+
+        File.open("/etc/ansible/hosts", "a") do |f|
+          f.write(@hstn +" "+@ip+" ansible_port="+@ssh.to_s+"\n")
+          f.close
+        end
+      end
       redirect_to hosts_path
     else
-      render action: 'edit'
+        render action: 'edit'
     end
-end
+  end
+
 
 private
-#metoda zwraca hasha w którym atrybuty które chcemy masowo przypisać zostaną oznaczone jako bezpieczne
-# title, author, body i published sa oznaczone jako bezpieczne atrybuty
-def host_params
-  params.require(:host).permit(:hostname, :address)
-end
 
+  def host_params
+   params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port)
+  end
 end

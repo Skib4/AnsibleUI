@@ -2,19 +2,14 @@
 
 <p><%= link_to "Dodaj nowy host", new_host_path, class: "btn btn-success" %></p>
 
-<!--
-<ul class="nav nav-tabs">
-  <li <% if params[:action] == "index" %>class="active"<% end %>><%= link_to "Wszystkie", hosts_path %></li>
-  <li <% if params[:action] == "published" %>class="active"<% end %>><%= link_to "Opublikowane", published_hosts_path %></li>
-</ul>
---->
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th>#</th>
       <th>Hostname</th>
       <th>Adres</th>
+      <th>Port SSH</th>
+      <th>Opis</th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +17,9 @@
       <tr>
         <td><%= host.id %></td>
         <td><%= host.hostname.html_safe %></td>
-        <td><%= host.address %></td>
+        <td><%= host.ip_addr %></td>
+        <td><%= host.ssh_port %></td>
+        <td><%= host.description %></td>
         <td>
           <%= link_to "Pokaż", host_path(host), class: "btn btn-default btn-xs" %>
           <%= link_to "Edytuj", edit_host_path(host), class: "btn btn-primary btn-xs" %>
@@ -32,32 +29,3 @@
     <% end %>
   </tbody>
 </table>
-<!---
-<!DOCTYPE html>
-<html>
-
-<body>
-  <nav class="navbar navbar-inverse">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Blog</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li class="active" <a href="#">Strona główna</a></li>
-        <li <a href="#">O aplikacji</a></li>
-        <li <a href="#">Dokumentacja Ansible</a></li>
-        <li <a href="#">Podręcznik użytkownika</a></li>
-        <li <a href="#">Warunki prywatności</a></li>
-        <li <a href="#">Skontaktuj się</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
-
-    <%= yield %>
-
-  </div>
-
-</body>
-</html>
---->

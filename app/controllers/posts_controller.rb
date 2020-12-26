@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  #  before_action :authenticate_user!
 
 # wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
   def new
@@ -60,6 +60,11 @@ class PostsController < ApplicationController
         render action: 'edit'
       end
   end
+
+# t.string "author"
+# t.boolean "published"
+# t.date "created"
+# t.text "body"
 
   private
   #metoda zwraca hasha w którym atrybuty które chcemy masowo przypisać zostaną oznaczone jako bezpieczne

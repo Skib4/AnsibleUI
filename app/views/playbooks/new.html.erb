@@ -1,11 +1,32 @@
 <h3>Dodawanie nowego playbooka</h3>
-<%= render partial: "form", locals: { button_name: "Dodaj" } %>
-<hr/>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Dodaj playbooka przez formularz
+        </button>
+      </h5>
+    </div>
 
-<h3>Pobierz playbooka z Githuba</h3>
-<%= render partial: "github", locals: { button_name: "Pobierz" } %>
-<hr/>
-
-<h3>Dodaj playbooka z własnego komputera</h3>
-<%= render partial: "upload", locals: { button_name: "Prześlij" } %>
-<hr/>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <%= render partial: "form", locals: { button_name: "Dodaj" } %>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Pobierz playbooka z githuba
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <%= render partial: "github", locals: { button_name: "Pobierz" } %>
+      </div>
+    </div>
+  </div>
+</div>

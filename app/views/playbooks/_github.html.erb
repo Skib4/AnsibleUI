@@ -1,9 +1,29 @@
-
-
-<%= form_with url: '/playbooks/wget'  do |f| %>
-   <div class="field">
-     <%= f.label :Link%>
-     <%= f.text_field :my_input %>
-   </div>
-   <%= f.submit "Pobierz", :class => "btn btn-primary" %>
+<% if @playbook.errors.present? %>
+  <div class="alert alert-danger">
+    <p>Wystąpiły następujące błędy:</p>
+    <ol>
+      <% @playbook.errors.full_messages.each do |message| %>
+        <li><%= message.titleize %></li>
+      <% end %>
+    </ol>
+  </div>
+<% end %>
+<%= form_for @playbook do |f| %>
+  <div class="form-group">
+    <%= f.label :author, "Autor" %>
+    <%= f.text_field :author, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body, "Nazwa" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body, "Opis" %>
+    <%= f.text_field :body, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body, "URL do githuba" %>
+    <%= f.text_field :url, class: "form-control", placeholder: "eg. https://github.com/ansible/ansible-examples/blob/master/lamp_simple/site.yml" %>
+  </div>
+  <%= f.submit button_name, class: "btn btn-primary" %>
 <% end %>

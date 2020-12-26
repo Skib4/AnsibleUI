@@ -29,12 +29,18 @@
           <a class="dropdown-item" href="<%= hosts_path %>">Zarządzaj hostami</a>
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Uruchom</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" href="<%= new_run_path %>">Wykonaj playbooka</a>
+          <a class="dropdown-item" href="<%= runs_path %>">Historia uruchomień</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= posts_path %>">Tablica ogłoszeń</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Szukaj..." aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
-    </form>
     <div class="nav-item dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Konto </a>
             <div class="dropdown-menu">

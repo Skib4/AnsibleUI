@@ -10,14 +10,22 @@
     </ol>
   </div>
 <% end %>
-
+<!-- rails generate model playbooks author:string created:date description:text name:string url:string body:text path:strin --->
 <%= form_for @playbook do |f| %>
 <div class="form-group">
   <%= f.label :author, "Autor" %>
   <%= f.text_field :author, class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :body, "Treść" %>
+  <%= f.label :body, "Nazwa" %>
+  <%= f.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :body, "Opis" %>
+  <%= f.text_field :description, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :body, "Kod playbooka w formacie yaml" %>
   <%= f.text_area :body, class: "form-control" %>
 </div>
 <%= f.submit button_name, class: "btn btn-primary" %>

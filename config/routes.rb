@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  #  get 'runs/new'
+  #  get 'runs/create'
+  # get 'runs/update'
+  #  get 'runs/edit'
+  #  get 'runs/destroy'
+  #  get 'runs/show'
+  # get 'runs/index'
   devise_for :admins
   devise_scope :user do
     root :to => 'devise/sessions#new'
@@ -26,9 +33,6 @@ resources :hosts do
 member do
     get :confirm_destroy
 end
-collection do
-  get :published
-end
 end
 
 resources :playbooks do
@@ -40,6 +44,14 @@ collection do
 end
 end
 
+  resources :runs do
+    member do
+      get :confirm_destroy
+    end
+    collection do
+      get :published
+    end
+  end
 
 #get '/posts' => 'posts#index'
 #get '/posts/new' => 'posts#new'

@@ -2,8 +2,18 @@
 
 one:
   author: MyString
+  created_at: 2020-12-23
+  description: MyText
+  name: MyString
+  url: MyString
   body: MyText
+  path: MyString
 
 two:
   author: MyString
+  created_at: 2020-12-23
+  description: MyText
+  name: MyString
+  url: MyString
   body: MyText
+  path: MyString

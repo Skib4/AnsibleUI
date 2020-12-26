@@ -1,5 +1,4 @@
-<h3><%= @post.title %></h3>
-<p><%= @post.body %></p>
-<p><%= post_footer(@post) %></p>
-<!-- <p><cite><%= @post.author %>, <%= format_date(@post.created_at)%></cite></p> -->
-<p><%= link_to "Wróc do spisu", posts_path %></p>
+<h3><%= @playbook.name %></h3>
+<p><%= @playbook.description %></p>
+<p><%= @playbook.path %></p>
+<p><%= link_to "Wróc do spisu", playbooks_path %></p>

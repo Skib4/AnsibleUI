@@ -1,5 +1,5 @@
-<h3><%= @host.title %></h3>
-<p><%= @host.body %></p>
-<p><%= host_footer(@host) %></p>
-<!-- <p><cite><%= @host.author %>, <%= format_date(@host.created_at)%></cite></p> -->
+<h3><%= @host.hostname %></h3>
+<p><%= @host.ip_addr %></p>
+<p><%= @host.description %></p>
+<p><%= @host.ssh_port %></p>
 <p><%= link_to "Wróc do spisu", hosts_path %></p>
