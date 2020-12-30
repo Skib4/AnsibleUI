@@ -1,2 +1,6 @@
-<h1>Runs#new</h1>
-<p>Find me in app/views/runs/new.html.erb</p>
+
+<select name="playbook">
+  <%= Playbook.all.each do |h| %>
+    <option value="<%= h.id %>"><%= h.name %></option>
+  <% end %>
+</select>

@@ -32,6 +32,7 @@ end
 resources :hosts do
 member do
     get :confirm_destroy
+    get :test
 end
 end
 

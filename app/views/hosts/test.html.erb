@@ -1,0 +1,43 @@
+<div class="jumbotron">
+  <h2 class="display-4">Wynik testu połączenia</h2>
+  <p class="lead">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Hostname</th>
+      <th>IP</th>
+      <th>Port SSH</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= @host.hostname.html_safe %></td>
+      <td><%= @host.ip_addr %></td>
+      <td><%= @host.ssh_port %></td>
+    </tr>
+    </tbody>
+  </table>
+  </p>
+  <hr class="my-4">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h5 class="display-5">Ping</h5>
+      <p class="lead"> </p>
+    </div> <%= render file: '/etc/ansible/tmp/ping_'+@host.id.to_s %>
+  </div>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h5 class="display-5">Telnetn</h5>
+      <p class="text-info"> <%= render file: '/etc/ansible/tmp/telnet_'+@host.id.to_s %>
+      </p>
+    </div>
+  </div>
+  <!--<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  --->
+  <p><a class="btn btn-secondary" href="<%= hosts_path %>" role="button">Powrót &raquo;</a></p>
+</div>
+
+
+
+
+

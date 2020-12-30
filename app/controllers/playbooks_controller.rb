@@ -7,12 +7,9 @@ class PlaybooksController < ApplicationController
 
   def create
     @X = params.require(:playbook).permit(:author, :body, :description, :url, :path, :name)
-    @auth = @X['author']
     @bd = @X['body']
-    @des = @X['description']
     @url = @X['url']
     @name =@X['name']
-    @path = @X['path']
     @playbook = Playbook.new(playbook_params)
 
     if (@url == nil)
@@ -32,15 +29,6 @@ class PlaybooksController < ApplicationController
     end
   end
 
-  #Host.all.each do |host|
-  #         @hstn = host.hostname
-  #         @ip =  host.ip_addr
-  #         @ssh= host.ssh_port
-  #         File.open("/etc/ansible/hosts", "w+") do |f|
-  #           f.write(@hstn +" "+@ip+" ansible_port="+@ssh.to_s+"\n")
-  #           f.close
-  #         end
-  #
   def edit
     @playbook = Playbook.find(params[:id])
     @name = @playbook.name
@@ -50,11 +38,6 @@ class PlaybooksController < ApplicationController
   def index
     @playbooks = Playbook.all
   end
-
-  #def wget
-  #  my_input = params['my_input']
-  #  system("wget -P /etc/ansible/playbooks #{my_input}")
-  #end
 
   def show
     @playbook = Playbook.find(params[:id])

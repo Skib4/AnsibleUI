@@ -24,6 +24,8 @@
           <%= link_to "Pokaż", host_path(host), class: "btn btn-default btn-xs" %>
           <%= link_to "Edytuj", edit_host_path(host), class: "btn btn-primary btn-xs" %>
           <%= link_to "Usuń", confirm_destroy_host_path(host), class: "btn btn-danger btn-xs" %>
+          <%= link_to "Test połączenia", test_host_path(host), class: "btn btn-warning btn-xs" %>
+
         </td>
       </tr>
     <% end %>

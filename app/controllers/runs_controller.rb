@@ -24,10 +24,15 @@ class RunsController < ApplicationController
 
   def index
     @runs = Run.all
+    @hosts = Host.all
   end
 
   def execute
 
+  end
+
+  def call_hosts
+    @hosts = Host.all
   end
 
   def show

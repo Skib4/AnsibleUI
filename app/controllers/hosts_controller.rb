@@ -47,6 +47,23 @@ end
      @host = Host.find(params[:id])
   end
 
+  def test
+    #@X =  params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port)
+    @host = Host.find(params[:id])
+    @hstn = @host.hostname
+    @ip = @host.ip_addr
+    @ssh = @host.ssh_port
+    @id = @host.id
+    #@timestamp="$(date +"%d%m%Y%H%M%S")"
+    #dopisać ifa gdyby hostname nie działał
+    @command_telnet ="echo -e '\x1dclose\x0d' |"+ @ip+" "+@ssh.to_s+" > /etc/ansible/tmp/telnet_"+@id.to_s
+    @command_ping ="ping -c 4 "+ @ip + " > /etc/ansible/tmp/ping_"+@id.to_s
+    system(@command_ping)
+    system(@command_telnet)
+    @data_ping = File.read("/etc/ansible/tmp/ping_"+@id.to_s)
+    @data_telnet = File.read("/etc/ansible/tmp/telnet_"+@id.to_s)
+  end
+
   def destroy
     Host.find(params[:id]).destroy
 
