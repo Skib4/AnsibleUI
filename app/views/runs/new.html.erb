@@ -1,6 +1,63 @@
+<h3>Wykonaj playbooka na wskazanym hoście</h3>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Wykonaj wcześniej zapisanego playbooka
+        </button>
+      </h5>
+    </div>
 
-<select name="playbook">
-  <%= Playbook.all.each do |h| %>
-    <option value="<%= h.id %>"><%= h.name %></option>
-  <% end %>
-</select>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleSelect1">Wybierz playbook do wykonania</label>
+          <select class="form-control" id="exampleSelect1">
+            <%= Playbook.all.each do |p| %>
+              <option value="<%= p.id %>"><%= p.name %></option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleSelect2">Wybierz host (możesz wybrać kilka)</label>
+          <select multiple class="form-control" id="exampleSelect2">
+            <%= Host.all.each do |h| %>
+              <option value="<%= h.id %>"><%= h.hostname %></option>
+            <% end %>
+          </select>
+        </div>
+        <%= link_to "Wykonaj", playbooks_path, class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Wykonaj komendę bashową na wskazanym serwerze
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleSelect2">Wybierz host (możesz wybrać kilka)</label>
+          <select multiple class="form-control" id="exampleSelect2">
+            <%= Host.all.each do |h| %>
+              <option value="<%= h.id %>"><%= h.hostname %></option>
+            <% end %>
+          </select>
+        </div>
+        <%= form_for @run do |r| %>
+        <div class="form-group">
+          <%= r.label :ssh_user, "Komenda bash" %>
+          <%= r.text_field :command, class: "form-control" %>
+        </div>
+          <% end %>
+        <%= link_to "Wykonaj", playbooks_path, class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>

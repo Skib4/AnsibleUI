@@ -3,8 +3,11 @@ class CreateHosts < ActiveRecord::Migration[6.0]
     create_table :hosts do |t|
       t.string :hostname
       t.string :ip_addr
-      t.text :description
+      t.string :description
       t.integer :ssh_port
+      t.string :ssh_user
+      t.text :ssh_key
+      t.string :ssh_password
 
       t.timestamps
     end

@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_190353) do
+ActiveRecord::Schema.define(version: 2020_12_30_183905) do
 
   create_table "hosts", force: :cascade do |t|
     t.string "hostname"
     t.string "ip_addr"
-    t.text "description"
+    t.string "description"
     t.integer "ssh_port"
+    t.string "ssh_user"
+    t.text "ssh_key"
+    t.string "ssh_password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

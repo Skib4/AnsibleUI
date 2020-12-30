@@ -5,10 +5,10 @@
 // the compiled file.
 //
 //= require jquery
-//= require rails-ujs
-//= require activestorage
+//= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
 
 $(document).on('turbolinks:load', function() {
   $('.dropdown-toggle').dropdown()

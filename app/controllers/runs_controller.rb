@@ -28,7 +28,10 @@ class RunsController < ApplicationController
   end
 
   def execute
-
+    # Musze wiedziec jakie sa:
+    # a) hosty
+    # b) playbook do wykonania
+    # c) port ssh
   end
 
   def call_hosts

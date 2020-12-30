@@ -1,5 +1,23 @@
-<h3><%= @host.hostname %></h3>
-<p><%= @host.ip_addr %></p>
-<p><%= @host.description %></p>
-<p><%= @host.ssh_port %></p>
-<p><%= link_to "Wróc do spisu", hosts_path %></p>
+<h2 class="form-inline justify-content-center">Informacje o hoście</h2>
+<p class="lead">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Hostname</th>
+    <th>IP</th>
+    <th>Port SSH</th>
+    <th>Użytkownik SSH</th>
+    <th>Opis</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @host.hostname.html_safe %></td>
+    <td><%= @host.ip_addr %></td>
+    <td><%= @host.ssh_port %></td>
+    <td><%= @host.description %></td>
+    <td><%= @host.ssh_user %></td>
+  </tr>
+  </tbody>
+</table>
+<p><a class="btn btn-secondary" href="<%= hosts_path %>" role="button">Powrót &raquo;</a></p>

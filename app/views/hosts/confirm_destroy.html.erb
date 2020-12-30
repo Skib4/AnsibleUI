@@ -1,10 +1,27 @@
-<h3><%= @host.hostname %></h3>
-<%= @host.ip_addr %>
-
+<h2 class="form-inline justify-content-center">Usuwanie hosta</h2>
+<p class="lead">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Hostname</th>
+    <th>IP</th>
+    <th>Port SSH</th>
+    <th>Opis</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @host.hostname.html_safe %></td>
+    <td><%= @host.ip_addr %></td>
+    <td><%= @host.ssh_port %></td>
+    <td><%= @host.description %></td>
+  </tr>
+  </tbody>
+</table>
+</p>
+<hr>
 <p>Czy na pewno chcesz usunąć?</p>
 <p>
-<!-- tak - wywolanie prawdziwej akcji usuniecia z kontrolera --->
-  <%= link_to "Tak", host_path(@host), method: :delete, class: "btn btn-danger" %>
-<!-- nie - skierowanie do listy wszystkich postow --->
+  <%= link_to "Tak", host_path(@host), :method => :delete, class: "btn btn-danger" %>
   <%= link_to "Nie", hosts_path, class: "btn btn-default" %>
 </p>

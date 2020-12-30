@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  #  get 'runs/new'
-  #  get 'runs/create'
-  # get 'runs/update'
-  #  get 'runs/edit'
-  #  get 'runs/destroy'
-  #  get 'runs/show'
-  # get 'runs/index'
-  devise_for :admins
+  resources :hosts do
+    member do
+      get :confirm_destroy
+      get :test
+      get :ssh
+    end
+  end
+
   devise_scope :user do
     root :to => 'devise/sessions#new'
   end
@@ -29,28 +29,17 @@ collection do
 end
 end
 
-resources :hosts do
-member do
-    get :confirm_destroy
-    get :test
-end
-end
+
 
 resources :playbooks do
 member do
     get :confirm_destroy
-end
-collection do
-  get :published
 end
 end
 
   resources :runs do
     member do
       get :confirm_destroy
-    end
-    collection do
-      get :published
     end
   end
 
@@ -104,5 +93,6 @@ end
 #  get 'post' => 'posts#index', as: :post
 
   devise_for :users
+  devise_for :admins
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

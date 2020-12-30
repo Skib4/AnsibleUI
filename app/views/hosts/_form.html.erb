@@ -15,7 +15,7 @@
   <%= f.text_field :hostname, class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :ip_addr, "Adres" %>
+  <%= f.label :ip_addr, "Adres IP" %>
   <%= f.text_field :ip_addr, class: "form-control" %>
 </div>
   <div class="form-group">
@@ -25,6 +25,14 @@
   <div class="form-group">
     <%= f.label :ssh_port, "Port SSH" %>
     <%= f.number_field :ssh_port, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :ssh_user, "Użytkownik SSH" %>
+    <%= f.text_field :ssh_user, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :ssh_password, "Hasło SSH użytkownika zdalnego" %>
+    <%= f.password_field :ssh_password, class: "form-control" %>
   </div>
 <%= f.submit button_name, class: "btn btn-primary" %>
 <% end %>

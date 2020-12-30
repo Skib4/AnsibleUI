@@ -1,5 +1,6 @@
 <div class="jumbotron">
-  <h2 class="display-4">Wynik testu połączenia</h2>
+<!--  <h2 class="display-4, text-align:center">Wynik testu połączenia</h2> -->
+  <h2 class="form-inline justify-content-center">Wynik testu połączenia</h2>
   <p class="lead">
   <table class="table table-striped">
     <thead>
@@ -23,19 +24,27 @@
     <div class="container">
       <h5 class="display-5">Ping</h5>
       <p class="lead"> </p>
-    </div> <%= render file: '/etc/ansible/tmp/ping_'+@host.id.to_s %>
-  </div>
-  <div class="jumbotron jumbotron-fluid">
+      <pre>
+        <%= render file: '/etc/ansible/tmp/ping_'+@host.id.to_s %>
+      </pre>
+    </div>
+<hr>
+    <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h5 class="display-5">Telnetn</h5>
-      <p class="text-info"> <%= render file: '/etc/ansible/tmp/telnet_'+@host.id.to_s %>
-      </p>
+      <h5 class="display-5">Telnet</h5>
+      <pre>
+      <%= render file: '/etc/ansible/tmp/telnet_'+@host.id.to_s %>
+      </pre>
+    </div>
+      <hr>
+      <p><a class="btn btn-secondary" href="<%= hosts_path %>" role="button">Powrót &raquo;</a></p>
     </div>
   </div>
-  <!--<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  --->
-  <p><a class="btn btn-secondary" href="<%= hosts_path %>" role="button">Powrót &raquo;</a></p>
 </div>
+  <!--<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  </div>
+
+  --->
 
 
 
