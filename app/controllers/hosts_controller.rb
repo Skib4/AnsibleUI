@@ -52,16 +52,18 @@ class HostsController < ApplicationController
     @ssh = @host.ssh_port
     @id = @host.id
     #dopisać ifa gdyby hostname nie działał
+    # siłowe zamknięcie telnetu - funkcja boolean
     @command_telnet ="echo -e '\x1dclose\x0d' | telnet "+ @ip+" "+@ssh.to_s+" > /etc/ansible/tmp/telnet_"+@id.to_s
     @command_ping ="ping -c 4 "+@ip+" > /etc/ansible/tmp/ping_"+@id.to_s
-
-    @ping_file_test ="[ -s /etc/ansible/tmp/ping_"+@id.to_s+" ] && echo 'Test connection successful' > /etc/ansible/tmp/PING_OUT || echo 'Test connection error' > /etc/ansible/tmp/PING_OUT "
+    @ping_file_pre_test="cat /etc/ansible/tmp/ping_"+@id.to_s+" | grep '4 packets transmitted, 0 packets received, 0.0% packet loss' > /etc/ansible/tmp/ping_pre_"+@id.to_s
+    @ping_file_test ="[ -s /etc/ansible/tmp/ping_pre_"+@id.to_s+" ] && echo 'Test connection successful' > /etc/ansible/tmp/PING_OUT || echo 'Test connection error' > /etc/ansible/tmp/PING_OUT "
     @telnet_file_test ="[ -s /etc/ansible/tmp/telnet_"+@id.to_s+" ] && echo 'Test connection successful' > /etc/ansible/tmp/TELNET_OUT || echo 'Test connection error' > /etc/ansible/tmp/TELNET_OUT "
 
     @test_ping="cat /etc/ansible/tmp/PING_OUT >> /etc/ansible/tmp/ping_"+@id.to_s
     @test_telnet="cat /etc/ansible/tmp/TELNET_OUT >> /etc/ansible/tmp/telnet_"+@id.to_s
 
     system(@command_ping)
+    system(@ping_file_pre_test)
     system(@test_ping)
 
     system(@command_telnet)
