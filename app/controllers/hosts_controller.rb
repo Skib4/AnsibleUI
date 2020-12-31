@@ -78,12 +78,7 @@ class HostsController < ApplicationController
     system(@ssh_command)
   end
 
-  def destroy
-    @host = Host.find(params[:id])
-    @host.destroy
-    #  flash[:notice] = "Usunięto hosta!"
-    render action: 'edit_file'
-  end
+
 
   def edit_file
     system("rm -rf /etc/ansible/hosts")
@@ -96,8 +91,15 @@ class HostsController < ApplicationController
         f.close
       end
     end
-    #  flash[:notice] = "Usunięto hosta!"
+    #flash[:notice] = "Usunięto hosta!"
     redirect_to hosts_path
+  end
+
+  def destroy
+    @host = Host.find(params[:id])
+    @host.destroy
+    flash[:notice] = "Usunięto hosta!"
+    render action: 'edit_file'
   end
 
   def update

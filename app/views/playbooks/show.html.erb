@@ -1,4 +1,31 @@
-<h3><%= @playbook.name %></h3>
-<p><%= @playbook.description %></p>
-<p><%= @playbook.path %></p>
-<p><%= link_to "Wróc do spisu", playbooks_path %></p>
+<h2 class="form-inline justify-content-center">Informacje o playbooku</h2>
+<p class="lead">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Autor</th>
+    <th>Nazwa</th>
+    <th>Opis</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @playbook.author %></td>
+    <td><%= @playbook.name %></td>
+    <td><%= @playbook.description %></td>
+  </tr>
+  </tbody>
+</table>
+<hr>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h5 class="display-5">Kod</h5>
+    <pre>
+      <td><%= @playbook.body %></td>
+    </pre>
+  </div>
+  <hr>
+</div>
+<p><a class="btn btn-secondary" href="<%= playbooks_path %>" role="button">Powrót &raquo;</a></p>
+
+</div>

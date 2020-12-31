@@ -1,2 +1,3 @@
 class Playbook < ApplicationRecord
+
 end

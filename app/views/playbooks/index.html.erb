@@ -7,6 +7,7 @@
     <tr>
       <th>#</th>
       <th>Autor</th>
+      <th>Nazwa</th>
       <th>Opis</th>
       <th>Ścieżka</th>
     </tr>
@@ -16,11 +17,12 @@
       <tr>
         <td><%= playbook.id %></td>
         <td><%= playbook.author %></td>
+        <td><%= playbook.name %></td>
         <td><%= playbook.description %></td>
         <td><%= playbook.path %></td>
 
         <td>
-          <%= link_to "Pokaż", playbooks_path(playbook), class: "btn btn-default btn-xs" %>
+          <%= link_to "Pokaż", playbook_path(playbook), class: "btn btn-default btn-xs" %>
           <%= link_to "Edytuj", edit_playbook_path(playbook), class: "btn btn-primary btn-xs" %>
           <%= link_to "Usuń", confirm_destroy_playbook_path(playbook), class: "btn btn-danger btn-xs" %>
         </td>
