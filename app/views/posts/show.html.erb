@@ -1,5 +1,30 @@
-<h3><%= @post.title %></h3>
-<p><%= @post.body %></p>
+<h2 class="form-inline justify-content-center">Ogłoszenie nr <%= @post.id %></h2>
+<p class="lead">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Autor</th>
+    <th>Nazwa</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @post.author %></td>
+    <td><%= @post.title %></td>
+  </tr>
+  </tbody>
+</table>
+<hr>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 class="form-inline justify-content-center">Treść</h4>
+    <pre>
+      <td><%= @post.body %></td>
+    </pre>
+  </div>
+  <hr>
+</div>
 <p><%= post_footer(@post) %></p>
-<!-- <p><cite><%= @post.author %>, <%= format_date(@post.created_at)%></cite></p> -->
-<p><%= link_to "Wróc do spisu", posts_path %></p>
+
+<p><a class="btn btn-secondary" href="<%= posts_path %>" role="button">Powrót </a></p>
+</div>

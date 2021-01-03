@@ -81,3 +81,5 @@ gem 'rails-ujs', '~> 0.1.0'
 gem 'carrierwave'
 # do formularzy
 gem 'simple_form'
+# do walidacji adresu IP
+gem 'activemodel-ipaddr_validator'

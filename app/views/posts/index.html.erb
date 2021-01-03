@@ -1,12 +1,10 @@
 <h3> Lista wpisów </h3>
 
 <p><%= link_to "Dodaj nowy wpis", new_post_path, class: "btn btn-success" %></p>
-
 <ul class="nav nav-tabs">
-  <li <% if params[:action] == "index" %>class="active"<% end %>><%= link_to "Wszystkie", posts_path %></li>
+  <li <% if params[:action] == "index" %> class="active"<% end %>><%= link_to "Wszystkie", posts_path %></li>
   <li <% if params[:action] == "published" %>class="active"<% end %>><%= link_to "Opublikowane", published_posts_path %></li>
 </ul>
-
 
 <table class="table table-striped">
   <thead>
@@ -28,7 +26,7 @@
         <td><%= post.published ? "tak" : "nie" %></td>
         <td><%= post.body %></td>
         <td>
-          <%= link_to "Pokaż", post_path(post), class: "btn btn-default btn-xs" %>
+          <%= link_to "Pokaż", post_path(post), class: "btn btn-success btn-xs" %>
           <%= link_to "Edytuj", edit_post_path(post), class: "btn btn-primary btn-xs" %>
           <%= link_to "Usuń", confirm_destroy_post_path(post), class: "btn btn-danger btn-xs" %>
         </td>

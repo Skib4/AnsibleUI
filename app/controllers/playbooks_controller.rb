@@ -1,6 +1,6 @@
 class PlaybooksController < ApplicationController
-  #  before_action :authenticate_user!
-  #after_action :update_file
+  #before_action :authenticate_user!
+  after_action :update_file
 
   def new
     @playbook = Playbook.new(author: session[:author])

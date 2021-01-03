@@ -25,26 +25,19 @@
       <h5 class="display-5">Ping</h5>
       <p class="lead"> </p>
       <pre>
-        <%= render file: '/etc/ansible/tmp/ping_'+@host.id.to_s %>
+        <%= render file: '/etc/ansible/tmp/ping_'+@host.id.to_s.html_safe %>
       </pre>
-    </div>
-<hr>
-    <div class="jumbotron jumbotron-fluid">
-    <div class="container">
+      <hr class="my-4">
       <h5 class="display-5">Telnet</h5>
       <pre>
-      <%= render file: '/etc/ansible/tmp/telnet_'+@host.id.to_s %>
+      <%= render file: '/etc/ansible/tmp/telnet_'+@host.id.to_s.html_safe %>
       </pre>
-    </div>
-      <hr>
-      <p><a class="btn btn-secondary" href="<%= hosts_path %>" role="button">Powrót &raquo;</a></p>
-    </div>
+      <p><a class="btn btn-primary" href="<%= hosts_path %>" role="button">Powrót</a></p>
   </div>
 </div>
-  <!--<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  </div>
+</div>
 
-  --->
+
 
 
 
