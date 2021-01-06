@@ -1,33 +1,5 @@
-<h3> Lista hostów </h3>
-<p><%= link_to "Dodaj nowy host", new_host_path, class: "btn btn-success" %></p>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Hostname</th>
-      <th>Adres</th>
-      <th>Port SSH</th>
-      <th>Opis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @hosts.each do |host| %>
-      <tr>
-        <td><%= host.id %></td>
-        <td><%= host.hostname.html_safe %></td>
-        <td><%= host.ip_addr %></td>
-        <td><%= host.ssh_port %></td>
-        <td><%= host.description %></td>
-        <td>
-          <%= link_to "Pokaż", host_path(host), class: "btn btn-success btn-xs" %>
-          <%= link_to "Edytuj", edit_host_path(host), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Usuń", confirm_destroy_host_path(host), class: "btn btn-danger btn-xs" %>
-          <%= link_to "Test połączenia", test_host_path(host), class: "btn btn-warning btn-xs" %>
-          <%= link_to "Dodaj klucz SSH", confirm_ssh_host_path(host), class: "btn btn-info btn-xs" %>
-
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if current_user.admin == true %>
+    <%= render partial: "adminview" %>
+<% else %>
+    <%= render partial: "userview" %>
+<% end %>

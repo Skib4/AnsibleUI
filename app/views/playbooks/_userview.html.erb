@@ -1,0 +1,26 @@
+<h3> Lista playbooków </h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Autor</th>
+      <th>Nazwa</th>
+      <th>Opis</th>
+      <th>Ścieżka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @playbooks.each do |playbook| %>
+      <tr>
+        <td><%= playbook.id %></td>
+        <td><%= playbook.author %></td>
+        <td><%= playbook.name %></td>
+        <td><%= playbook.description %></td>
+        <td><%= playbook.path %></td>
+        <td>
+          <%= link_to "Pokaż", playbook_path(playbook), class: "btn btn-default btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

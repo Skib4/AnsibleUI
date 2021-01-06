@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  #root to: 'static#index'
+
+  get 'o-stronie' => 'static#about', as: :about
+  get 'dokumentacja' => 'static#docs', as: :docs
+  get 'podrecznik' => 'static#howto', as: :howto
+  get 'warunki-prywatnosci' => 'static#privacy', as: :privacy
+  get 'index' => 'static#index', as: :index
+  get 'warunki' => 'static#terms', as: :terms
+
   resources :hosts do
     member do
       get :confirm_destroy
@@ -9,36 +18,20 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_scope :user do
-    root :to => 'devise/sessions#new'
+  resources :posts do
+  member do
+      get :confirm_destroy
+  end
+  collection do
+    get :published
+  end
   end
 
-  get '/user' => "static#index", :as => :user_root
-
-def after_sign_in_path_for(resource_or_scope)
-  # your_path
-end
-
-def after_sign_out_path_for(resource_or_scope)
-  # your_path
-end
-
-resources :posts do
-member do
-    get :confirm_destroy
-end
-collection do
-  get :published
-end
-end
-
-
-
-resources :playbooks do
-member do
-    get :confirm_destroy
-end
-end
+  resources :playbooks do
+  member do
+      get :confirm_destroy
+  end
+  end
 
   resources :runs do
     member do
@@ -46,56 +39,21 @@ end
     end
   end
 
-#get '/posts' => 'posts#index'
-#get '/posts/new' => 'posts#new'
+  devise_scope :user do
+    root :to => 'static#index'
+  end
 
+  #get '/user' => "static#index", :as => :user_root
 
-#  get 'static/terms'
-#  get 'static/privacy'
-#  get 'static/howto'
-#  get 'static/docs'
-#  get 'static/about'
-#  get 'static/index'
+def after_sign_in_path_for(resource_or_scope)
+  get 'static#index'
+end
 
-  get 'o-stronie' => 'static#about', as: :about
-  get 'dokumentacja' => 'static#docs', as: :docs
-  get 'podrecznik' => 'static#howto', as: :howto
-  get 'warunki-prywatnosci' => 'static#privacy', as: :privacy
-  get 'index' => 'static#index', as: :index
-  get 'warunki' => 'static#terms', as: :terms
-
-
-#  get 'hosts/new'
-#  get 'hosts/edit'
-#  get 'hosts/index'
-#  get 'hosts/show'
-
-#  get 'new-host' => 'hosts#new', as: :newhost
-#  get 'edit-host' => 'hosts#edit', as: :edithost
-#  get 'host' => 'hosts#index', as: :host
-#  get 'show-host' => 'hosts#show', as: :showhost
-
-#  get 'playbooks/new'
-#  get 'playbooks/edit'
-#  get 'playbooks/index'
-#  get 'playbooks/show'
-
-#  get 'new-playbook' => 'playbooks#new', as: :newplaybook
-#  get 'edit-playbook' => 'playbooks#edit', as: :editplaybook
-#  get 'playbook' => 'playbooks#index', as: :playbook
-#  get 'show-playbook' => 'playbooks#show', as: :showplaybook
-
-#  get 'posts/new'
-#  get 'posts/edit'
-#  get 'posts/index'
-#  get 'posts/show'
-
-#  get 'new-post' => 'posts#new', as: :newpost
-#  get 'edit-post' => 'posts#edit', as: :editpost
-#  get 'show-post' => 'posts#show', as: :showpost
-#  get 'post' => 'posts#index', as: :post
+def after_sign_out_path_for(resource_or_scope)
+  # your_path
+end
 
   devise_for :users
   devise_for :admins
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end
