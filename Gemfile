@@ -83,3 +83,4 @@ gem 'carrierwave'
 gem 'simple_form'
 # do walidacji adresu IP
 gem 'activemodel-ipaddr_validator'
+gem 'bcrypt-ruby', :require => 'bcrypt'

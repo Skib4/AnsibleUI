@@ -6,8 +6,7 @@ class CreateHosts < ActiveRecord::Migration[6.0]
       t.string :description
       t.integer :ssh_port
       t.string :ssh_user
-      t.text :ssh_key
-      t.string :ssh_password
+      t.string :password_digest
 
       t.timestamps
     end

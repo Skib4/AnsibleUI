@@ -1,23 +1,22 @@
 class HostsController < ApplicationController
+  include BCrypt
   #before_action :authenticate_user!
   after_action :refresh, :refresh_file
 
-
   def index
     @hosts = Host.all
-    respond_to do |format|
-      format.html { }
-      format.xml { }
-      format.json { render json: @hosts.map { |h| { id: h.id, hostname: h.hostname, ip_addr: h.ip_addr, ssh_port: h.ssh_port, description: h.description } } }
-    end
   end
 
   def new
     @host = Host.new()
   end
 
+  def confirm_ssh
+    @host = Host.find(params[:id])
+  end
+
   def create
-    @X =  params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port)
+    @X =  params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port, :ssh_user, :password)
     @hstn = @X['hostname']
     @ip = @X['ip_addr']
     @ssh = @X['ssh_port']
@@ -30,6 +29,7 @@ class HostsController < ApplicationController
         f.close
       end
     flash[:notice] = "Host dodany pomyślnie"
+      redirect_to hosts_path
     else
       render action: 'new'
     end
@@ -81,6 +81,7 @@ class HostsController < ApplicationController
   end
 
   def ssh
+    @X =  params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port, :ssh_user, :password)
     @host = Host.find(params[:id])
     @hstn = @host.hostname
     @ip = @host.ip_addr
@@ -138,7 +139,7 @@ class HostsController < ApplicationController
 private
 
   def host_params
-   params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port, :ssh_user, :ssh_key, :ssh_password)
+   params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port, :ssh_user, :password)
   end
 
   def refresh

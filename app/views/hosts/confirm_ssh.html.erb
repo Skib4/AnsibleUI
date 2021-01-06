@@ -1,0 +1,11 @@
+<h2><p>Aby dodać klucz wprowadź ponownie hasło ssh</p></h2>
+<p>
+  <%= form_for @host do |f| %>
+  <div class="form-group">
+    <%= f.label :password, "Hasło SSH użytkownika zdalnego" %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <%= link_to "Dodaj klucz ssh", ssh_host_path(@host), class: "btn btn-success" %>
+  <%= link_to "Wróc", hosts_path, class: "btn btn-primary" %>
+<% end %>
+</p>

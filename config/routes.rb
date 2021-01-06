@@ -5,12 +5,15 @@ Rails.application.routes.draw do
       get :confirm_destroy
       get :test
       get :ssh
+      get :confirm_ssh
     end
   end
 
   devise_scope :user do
     root :to => 'devise/sessions#new'
   end
+
+  get '/user' => "static#index", :as => :user_root
 
 def after_sign_in_path_for(resource_or_scope)
   # your_path
