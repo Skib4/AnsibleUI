@@ -21,6 +21,14 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :name,
+                hint: "your name",
+                required: false,
+                input_html: { autocomplete: "name" }%>
+    <%= f.input :surname,
+                hint: "your surname",
+                required: false,
+                input_html: { autocomplete: "surname" }%>
   </div>
 
   <div class="form-actions">

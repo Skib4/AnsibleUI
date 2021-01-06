@@ -44,11 +44,11 @@
     <div class="nav-item dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Konto </a>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></a>
-              <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a></a>
-              <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></a>
+              <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profil </a>
+              <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
+              <a><%= link_to "Ustawienia", edit_user_registration_path(current_user), class: "dropdown-item" %></a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Logout </a>
+              <a><%= link_to "Wyloguj", destroy_user_session_path, :method => :delete, class: "dropdown-item" %></a>
             </div>
     </div>
     </ul>

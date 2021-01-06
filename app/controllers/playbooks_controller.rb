@@ -60,6 +60,7 @@ class PlaybooksController < ApplicationController
   def confirm_destroy
     @playbook = Playbook.find(params[:id])
   end
+  
 
   def update
     @playbook = Playbook.find(params[:id])
@@ -102,5 +103,3 @@ class PlaybooksController < ApplicationController
     end
   end
 end
-
-

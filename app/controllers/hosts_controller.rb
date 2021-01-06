@@ -1,6 +1,7 @@
 class HostsController < ApplicationController
   include BCrypt
-  #before_action :authenticate_user!
+
+  before_action :authenticate_user!
   after_action :refresh, :refresh_file
 
   def index
@@ -60,10 +61,10 @@ class HostsController < ApplicationController
     @command_ping ="ping -c 4 "+@ip+" > /etc/ansible/tmp/ping_"+@id.to_s
 
     # sprawdzenie czy frazy ktore oznaczaja blad polaczenia sie pojawily
-    @ping_file_pre_test="cat /etc/ansible/tmp/ping_"+@id.to_s+" | grep '4 packets transmitted, 0 packets received, 100.0% packet loss' > /etc/ansible/tmp/ping_pre_"+@id.to_s
+    @ping_file_pre_test="cat /etc/ansible/tmp/ping_"+@id.to_s+" | grep '4 packets transmitted, 0 packets received' > /etc/ansible/tmp/ping_pre_"+@id.to_s
 
     #jezeli ww frazy sie nie pojawily to pojawi sie bledy
-    @ping_file_test ="[ -s /etc/ansible/tmp/ping_pre_"+@id.to_s+" ] &&  echo '\nTest connection failed' >> /etc/ansible/tmp/ping_"+@id.to_s+" || echo '\nTest connection successful' >> /etc/ansible/tmp/ping_"+@id.to_s
+    @ping_file_test ="[ -s /etc/ansible/tmp/ping_pre_"+@id.to_s+" ] &&  echo '\nTest connection failed' >> /etc/ansible/tmp/PING_OUT || echo '\nTest connection successful' >> /etc/ansible/tmp/PING_OUT "
     @telnet_file_test ="[ -s /etc/ansible/tmp/telnet_"+@id.to_s+" ] && echo '\nTest connection successful' > /etc/ansible/tmp/TELNET_OUT || echo '\nTest connection failed' > /etc/ansible/tmp/TELNET_OUT "
 
     @test_ping="cat /etc/ansible/tmp/PING_OUT >> /etc/ansible/tmp/ping_"+@id.to_s
@@ -81,14 +82,16 @@ class HostsController < ApplicationController
   end
 
   def ssh
-    @X =  params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port, :ssh_user, :password)
+    #@X =  params.permit(:id, :hostname, :ip_addr, :description, :ssh_port, :ssh_user, :password)
     @host = Host.find(params[:id])
     @hstn = @host.hostname
     @ip = @host.ip_addr
     @ssh = @host.ssh_port
     @id = @host.id
+    @password= @X[:password]
+    #@savepass = "echo "+@password+" > /etc/ansible/tmp/pass"
     @ssh_command="sshpass -p "+$ssh_password+"ssh-copy-id "+@ssh_user+"@"+@ip+" -p"+@ssh_port+" > /etc/ansible/tmp/ssh_"+@id
-    system(@ssh_command)
+    system(@savepass)
   end
 
   def edit_file
