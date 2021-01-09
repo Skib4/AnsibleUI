@@ -1,0 +1,35 @@
+<% if @user.errors.present? %>
+  <div class="alert alert-danger">
+    <p>Wystąpiły następujące błędy:</p>
+    <ol>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message.titleize %></li>
+      <% end %>
+    </ol>
+  </div>
+<% end %>
+
+<%= form_for @user do |f| %>
+<div class="form-group">
+  <%= f.label :name, "Imię" %>
+  <%= f.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :surname, "Nazwisko" %>
+  <%= f.text_field :surname, class: "form-control" %>
+</div>
+  <div class="form-group">
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group form-check">
+    <%= f.check_box :admin, :class => "form-check-input", :id => "exampleCheck1" %>
+    <%= f.label :admin, "Admin?", :class => "form-check-label", :for => "exampleCheck1" %>
+  </div>
+  <div class="form-group form-check">
+    <%= f.check_box :approved, :class => "form-check-input", :id => "exampleCheck1" %>
+    <%= f.label :approved, "Dopuszczony?", :class => "form-check-label", :for => "exampleCheck1" %>
+  </div>
+<%= f.submit button_name, class: "btn btn-primary" %>
+<a class="btn btn-secondary " href="<%= users_path %>" role="button">Powrót</a></p>
+<% end %>

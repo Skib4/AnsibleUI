@@ -4,6 +4,7 @@ class CreateRuns < ActiveRecord::Migration[6.0]
       t.text :result
       t.text :command
       t.string :playbook_path
+      t.string :author
 
       t.timestamps
     end

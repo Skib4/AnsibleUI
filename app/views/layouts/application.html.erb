@@ -10,8 +10,8 @@
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="AnsibleUI">
+  <meta name="author" content="AS">
   <!-- Ikonka zakładki -->
   <link rel="icon" href="https://docs.ansible.com/ansible/latest/_static/images/logo_invert.png">
 </head>
@@ -21,15 +21,25 @@
   <% end %>
 
     <div class="container">
+      <div class="page-header">
+        <% if flash[:danger].present? %>
+          <div class="alert alert-danger">
+            <%= flash[:danger] %>
+          </div>
+        <% end %>
+        <% if flash[:notice].present? %>
+          <div class="alert alert-success">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+      </div>
       <div class="jumbotron">
-        <%= flash[:message] %>
-        <%= bootstrap_flash %>
         <%= yield %>
       </div>
     </div>
 
-
 <%= render "layouts/footer" %>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>

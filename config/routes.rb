@@ -1,6 +1,34 @@
 Rails.application.routes.draw do
 
-  #root to: 'static#index'
+  get 'user/index'
+  get 'user/show'
+  get 'user/new'
+  get 'user/edit'
+  get 'user/create'
+  get 'user/update'
+  get 'user/destroy'
+
+  devise_for :users, :path_prefix => 'app'
+  devise_scope :user do
+  resource :registration,
+    only: [:new, :create, :edit, :update],
+    path: 'users',
+    path_names: { new: 'sign_up' },
+    controller: 'devise/registrations',
+    as: :user_registration do
+      get :cancel
+    end
+  end
+
+  resources :users do
+    member do
+      get :confirm_destroy
+  end
+end
+
+  devise_for :admins
+
+  root to: 'static#index'
 
   get 'o-stronie' => 'static#about', as: :about
   get 'dokumentacja' => 'static#docs', as: :docs
@@ -39,21 +67,19 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_scope :user do
-    root :to => 'static#index'
-  end
+#  devise_scope :user do
+#    root :to => 'static#index'
+#  end
 
   #get '/user' => "static#index", :as => :user_root
 
-def after_sign_in_path_for(resource_or_scope)
-  get 'static#index'
-end
+#def after_sign_in_path_for(resource_or_scope)
+#  get 'static#index'
+#end
 
-def after_sign_out_path_for(resource_or_scope)
-  # your_path
-end
+#def after_sign_out_path_for(resource_or_scope)
+#  # your_path
+#end
 
-  devise_for :users
-  devise_for :admins
 
 end

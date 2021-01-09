@@ -1,9 +1,10 @@
 class PlaybooksController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   after_action :update_file
 
   def new
     @playbook = Playbook.new(author: session[:author])
+    @playbook.author= current_user.name + " " + current_user.surname
   end
 
   def create
@@ -60,7 +61,7 @@ class PlaybooksController < ApplicationController
   def confirm_destroy
     @playbook = Playbook.find(params[:id])
   end
-  
+
 
   def update
     @playbook = Playbook.find(params[:id])

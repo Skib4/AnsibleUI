@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Tytuł</th>
+      <th>Autor</th>
+      <th>Opublikowany?</th>
+      <th>Treść</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.title.html_safe %></td>
+        <td><%= post.author %></td>
+        <td><%= post.published ? "tak" : "nie" %></td>
+        <td><%= post.body %></td>
+        <td>
+          <%= link_to "Pokaż", post_path(post), class: "btn btn-success btn-xs" %>
+          <%= link_to "Edytuj", edit_post_path(post), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Usuń", confirm_destroy_post_path(post), class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

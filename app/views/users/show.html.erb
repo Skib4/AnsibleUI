@@ -1,0 +1,27 @@
+<h3> Lista użytkowników </h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.surname %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to "Pokaż", user_path(user), class: "btn btn-success btn-xs" %>
+          <%= link_to "Edytuj", edit_user_path(user), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Usuń", confirm_destroy_user_path(user), class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

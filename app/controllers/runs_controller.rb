@@ -3,6 +3,7 @@ class RunsController < ApplicationController
 
   def new
     @run = Run.new()
+  #  @run.author= current_user.name + " " + current_user.surname
   end
 
   def create

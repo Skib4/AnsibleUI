@@ -1,8 +1,7 @@
 class HostsController < ApplicationController
-  include BCrypt
-
   before_action :authenticate_user!
   after_action :refresh, :refresh_file
+  include BCrypt
 
   def index
     @hosts = Host.all
@@ -10,6 +9,7 @@ class HostsController < ApplicationController
 
   def new
     @host = Host.new()
+  #  @host.author= current_user.name + " " + current_user.surname
   end
 
   def confirm_ssh

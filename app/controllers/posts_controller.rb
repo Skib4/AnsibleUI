@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 # wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
   def new
     @post = Post.new(author: session[:author])
+    @post.author= current_user.name + " " + current_user.surname
   end
 
 # metoda do obsługi zapisywania nowych postów

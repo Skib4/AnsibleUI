@@ -1,39 +1,17 @@
 <h3> Lista wpisów </h3>
 
-<% if current_user.admin == true %>
 <p><%= link_to "Dodaj nowy wpis", new_post_path, class: "btn btn-success" %></p>
-<% else %>
 
-<% end %>
-<ul class="nav nav-tabs">
-  <li <% if params[:action] == "index" %> class="nav-tab"<% end %>><%= link_to "Wszystkie", posts_path %></li>
-  <li <% if params[:action] == "published" %>class="nav-tab"<% end %>><%= link_to "Opublikowane", published_posts_path %></li>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation" >
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" role="tab" aria-controls="pills-home" aria-selected="true" href="#pills-home" >Wszystkie</a>
+  </li>
+  <li class="nav-item" role="presentation" >
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" role="tab" aria-controls="pills-profile" aria-selected="false" href="#pills-profile" href="<%= published_posts_path %>">Opublikowane</a>
+  </li>
 </ul>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Tytuł</th>
-      <th>Autor</th>
-      <th>Opublikowany?</th>
-      <th>Treść</th>
-      <th>Akcje</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.id %></td>
-        <td><%= post.title.html_safe %></td>
-        <td><%= post.author %></td>
-        <td><%= post.published ? "tak" : "nie" %></td>
-        <td><%= post.body %></td>
-        <td>
-          <%= link_to "Pokaż", post_path(post), class: "btn btn-success btn-xs" %>
-          <%= link_to "Edytuj", edit_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Usuń", confirm_destroy_post_path(post), class: "btn btn-danger btn-xs" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"><%= render partial: "taball" %></div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><%= render partial: "tabpublished" %></div>
+</div>
