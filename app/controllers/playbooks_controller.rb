@@ -13,6 +13,7 @@ class PlaybooksController < ApplicationController
     @bd = @X['body']
     @url = @X['url']
     @name =@X['name']
+    @playbook.path = "/etc/ansible/playbooks/"+@playbook.name+".yaml"
 
     if (@url == nil)
       @playbook.save

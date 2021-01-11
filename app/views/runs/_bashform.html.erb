@@ -1,0 +1,22 @@
+<% if @run.errors.present? %>
+  <div class="alert alert-danger">
+    <p>Wystąpiły następujące błędy:</p>
+    <ol>
+      <% @run.errors.full_messages.each do |message| %>
+        <li><%= message.titleize %></li>
+      <% end %>
+    </ol>
+  </div>
+<% end %>
+
+<%= form_for @run do |f| %>
+<div class="form-group">
+  <%= f.label :host_id, "Wybierz host (możesz wybrać kilka)" %>
+  <%= collection_select(:run, :host_id, Host.select(:id, :hostname) , :id, :hostname, prompt: true, :multiple => 'true') %>
+</div>
+<div class="form-group">
+  <%= f.label :ssh_user, "Komenda bash" %>
+  <%= f.text_field :command, class: "form-control" %>
+</div>
+<%= f.submit button_name, class: "btn btn-primary" %>
+<% end %>

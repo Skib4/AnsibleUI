@@ -277,6 +277,7 @@ PLATFORMS
 
 DEPENDENCIES
   activemodel-ipaddr_validator
+  activesupport
   bcrypt-ruby
   bootsnap (>= 1.4.2)
   byebug

@@ -43,6 +43,7 @@ end
       get :test
       get :ssh
       get :confirm_ssh
+      get :copy_id
     end
   end
 

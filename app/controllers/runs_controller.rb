@@ -3,21 +3,25 @@ class RunsController < ApplicationController
 
   def new
     @run = Run.new()
-  #  @run.author= current_user.name + " " + current_user.surname
+    @hosts = Host.all
+    @playbooks = Playbook.all
+    @run.author= current_user.name + " " + current_user.surname
   end
 
   def create
-    run = Run.new(run_params)
+    @run = Run.new(run_params)
+    @hosts = Host.all
+    @playbooks = Playbook.all
     if @run.save
+
+
       @run.save
       # Ustawiamy sesję/cookies aby zapamietac autorow
-      session[:author] = @run.author
-      # wartość wiadomości flashowej dodajemy w tym żądaniu lecz jej wartość zostanie wyświetlona w kolejnym (po przekierowaniu)
-      flash[:notice] = "Run dodany pomyślnie"
+      # flash[:notice] = "Run dodany pomyślnie"
     else
       render action: 'new'
     end
-    redirect_to runs_path
+    redirect_to run_path
   end
 
   def edit
@@ -27,6 +31,7 @@ class RunsController < ApplicationController
   def index
     @runs = Run.all
     @hosts = Host.all
+    @playbooks = Playbook.all
   end
 
   def execute
@@ -57,7 +62,7 @@ class RunsController < ApplicationController
   private
 
   def run_params
-    params.require(:run).permit(:result, :command, :playbook_path)
+    params.require(:run).permit(:result, :command, :playbook_path, :author, :hostname, :ip_addr, :playbook_id, :host_id)
   end
 
 end

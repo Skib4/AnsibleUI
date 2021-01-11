@@ -48,7 +48,7 @@
       </li>
     <div class="nav-item dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Konto </a>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu dropdown-menu-right">
               <a><%= link_to "Ustawienia", edit_user_registration_path(current_user), class: "dropdown-item" %></a>
               <% if current_user.admin == true %>
               <a><%= link_to "Edytuj użytkowników", users_path, class: "dropdown-item" %></a>

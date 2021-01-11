@@ -1,4 +1,4 @@
-<h3> Lista użytkowników </h3>
+ <h3> Lista użytkowników </h3>
 
 <table class="table table-striped">
   <thead>
@@ -7,21 +7,23 @@
       <th>Imię</th>
       <th>Nazwisko</th>
       <th>Email</th>
+      <th>Ilość poprawnych logowań</th>
+      <th>Ostatnie IP</th>
+      <th>Błędnych prób logowania</th>
+      <th>Data ostatniego logowania</th>
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.surname %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to "Pokaż", user_path(user), class: "btn btn-success btn-xs" %>
-          <%= link_to "Edytuj", edit_user_path(user), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Usuń", confirm_destroy_user_path(user), class: "btn btn-danger btn-xs" %>
-        </td>
+        <td><%= @user.id %></td>
+        <td><%= @user.name %></td>
+        <td><%= @user.surname %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.sign_in_count %></td>
+        <td><%= @user.last_sign_in_ip %></td>
+        <td><%= @user.failed_attempts %></td>
+        <td><%= @user.last_sign_in_at %></td>
       </tr>
-    <% end %>
   </tbody>
 </table>
+<%= link_to "wróć", users_path, class: "btn btn-success btn-xs" %>

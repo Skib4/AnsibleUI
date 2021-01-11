@@ -2,8 +2,8 @@
 <p>
   <%= form_for @host do |f| %>
   <div class="form-group">
-    <%= label :password, "Hasło SSH użytkownika zdalnego" %>
-    <%= password_field :password, class: "form-control" %>
+    <%= label :passwordssh, "Hasło SSH użytkownika zdalnego" %>
+    <%= password_field :passwordssh, class: "form-control" %>
   </div>
   <%= link_to "Dodaj klucz ssh", ssh_host_path(@host), class: "btn btn-success" %>
   <%= link_to "Wróc", hosts_path, class: "btn btn-primary" %>
