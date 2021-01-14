@@ -1,4 +1,4 @@
-<h2>Register</h2>
+<h2>Rejestracja</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -9,25 +9,29 @@
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :name,
+                :label => 'Imię',
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "name" }%>
     <%= f.input :surname,
+                :label => 'Nazwisko',
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "surname" }%>
     <%= f.input :password,
+                :label => 'Hasło',
                 required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                hint: ("#{@minimum_password_length} znaków jest wymagane" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
+                :label => 'Potwierdź hasło',
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Register", :class => "btn btn-primary" %>
+    <%= f.button :submit, "Rejestracja", :class => "btn btn-primary" %>
   </div>
-<% end %>
+  <%= render "devise/shared/links" %>
 
-<%= render "devise/shared/links" %>
+<% end %>

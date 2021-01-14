@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-sm"></div>
   <div class="col-sm">
-<h2>Log in</h2>
+<h2>Zaloguj się</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-signin">
@@ -11,13 +11,14 @@
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
     <%= f.input :password,
+                :label => 'Hasło',
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= f.input :remember_me, :label => 'Zapamiętaj mnie', as: :boolean if devise_mapping.rememberable? %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in", :class => "btn btn-success btn-block" %>
+    <%= f.button :submit, "Zaloguj", :class => "btn btn-success btn-block" %>
   </div>
 <% end %>
 

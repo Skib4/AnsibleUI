@@ -86,7 +86,7 @@ class PlaybooksController < ApplicationController
   private
 
   def playbook_params
-    params.require(:playbook).permit(:author, :body, :description, :url, :path,:name)
+    params.require(:playbook).permit(:author, :body, :description, :url, :path, :name, :runsnumber)
   end
 
   def update_file

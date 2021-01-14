@@ -5,19 +5,26 @@
   <tr>
     <th>Autor</th>
     <th>Nazwa</th>
-    <th>Opis</th>
+    <th>Ścieżka</th>
   </tr>
   </thead>
   <tbody>
   <tr>
     <td><%= @playbook.author %></td>
     <td><%= @playbook.name %></td>
-    <td><%= @playbook.description %></td>
+    <td><%= @playbook.path %></td>
   </tr>
   </tbody>
 </table>
 <hr>
 <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h5 class="display-5">Opis</h5>
+    <pre>
+      <td><%= @playbook.description %></td>
+    </pre>
+  </div>
+  <hr>
   <div class="container">
     <h5 class="display-5">Kod</h5>
     <pre>

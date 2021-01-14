@@ -12,11 +12,11 @@
 <%= form_for @run do |f| %>
 <div class="form-group">
   <%= f.label :host_id, "Wybierz playbook" %>
-  <%= collection_select(:run, :playbook_id, Playbook.select(:id, :name) , :id, :name, prompt: true, :multiple => 'true') %>
+  <%= f.collection_select :playbook_id, Playbook.select(:id, :name), :id, :name, {}, {class: "form-control"} %>
 </div>
 <div class="form-group">
-  <%= f.label :host_id, "Wybierz host (możesz wybrać kilka)" %>
-  <%= collection_select(:run, :host_id, Host.select(:id, :hostname) , :id, :hostname, prompt: true, :multiple => 'true') %>
+  <%= f.label :host_id, "Wybierz host (możesz wybrać kilka trzymając CTRL)" %>
+  <%= f.collection_select :host_id, Host.select(:id, :hostname), :id, :hostname, {}, {class: "form-control", multiple: true}%>
 </div>
 <%= f.submit button_name, class: "btn btn-primary" %>
 <% end %>

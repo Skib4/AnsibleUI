@@ -1,5 +1,43 @@
-
-
 .field_with_errors input {
   border: 2px solid #cc4444;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+  text-align-last: center;
+  justify-content: center;
+}
+
+th {
+  text-align: center;
+  vertical-align: middle;
+  text-align-last: center;
+  justify-content: center;
+}
+
+h1 {
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+h2 {
+  text-align: center;
+  vertical-align: middle;
+}
+
+h3 {
+  text-align: center;
+  vertical-align: middle;
+}
+
+h4 {
+  text-align: center;
+  vertical-align: middle;
+}
+
+h5 {
+  text-align: center;
+  vertical-align: middle;
 }
