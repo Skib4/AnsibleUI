@@ -55,12 +55,14 @@
     <div class="nav-item dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Konto </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a><%= link_to "Ustawienia", edit_user_registration_path(current_user), class: "dropdown-item" %></a>
+              <a><%=  link_to '<i class="fas fa-cog"></i> Ustawienia'.html_safe, edit_user_registration_path(current_user), class: "dropdown-item" %></a>
               <% if current_user.admin == true %>
-              <a><%= link_to "Edytuj użytkowników", users_path, class: "dropdown-item" %></a>
+              <a><%= link_to '<i class="fas fa-users"></i> Edytuj użytkowników'.html_safe, users_path, class: "dropdown-item" %></a>
               <% end %>
               <div class="dropdown-divider"></div>
-              <a><%= link_to "Wyloguj", destroy_user_session_path, :method => :delete, class: "dropdown-item" %></a>
+              <a>
+                <%= link_to '<i class="fas fa-power-off"></i> Wyloguj'.html_safe, destroy_user_session_path, :method => :delete, class: "dropdown-item " %>
+                  </a>
             </div>
     </div>
     </ul>

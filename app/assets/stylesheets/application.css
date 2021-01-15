@@ -1,3 +1,7 @@
+/*
+ *= require font-awesome
+ */
+
 .field_with_errors input {
   border: 2px solid #cc4444;
 }
