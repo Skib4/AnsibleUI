@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'user/create'
   get 'user/update'
   get 'user/destroy'
+  get 'locale', to: 'locales#save_locale', as: :set_locale
 
   devise_for :users, :path_prefix => 'app'
   devise_scope :user do
