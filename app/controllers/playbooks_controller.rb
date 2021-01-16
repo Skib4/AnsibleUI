@@ -1,7 +1,8 @@
 class PlaybooksController < ApplicationController
   before_action :authenticate_user!
   after_action :update_file
-
+  before_action :update_file
+  
   def new
     @playbook = Playbook.new(author: session[:author])
     @playbook.author= current_user.name + " " + current_user.surname
@@ -14,6 +15,8 @@ class PlaybooksController < ApplicationController
     @url = @X['url']
     @name =@X['name']
     @playbook.path = "/etc/ansible/playbooks/"+@playbook.name+".yaml"
+    @playbook.runsnumber = 0
+
 
     if (@url == nil)
       @playbook.save
@@ -86,7 +89,7 @@ class PlaybooksController < ApplicationController
   private
 
   def playbook_params
-    params.require(:playbook).permit(:author, :body, :description, :url, :path, :name, :runsnumber)
+    params.require(:playbook).permit(:author, :body, :description, :url, :path, :name, :runsnumber, :host_id)
   end
 
   def update_file
@@ -95,12 +98,12 @@ class PlaybooksController < ApplicationController
       @body =  playbook.body
       @url = playbook.url
 
-      if (@url == nil )
+#      if (@url == nil )
       system("rm -rf /etc/ansible/playbooks/"+@name+".yaml")
       File.open("/etc/ansible/playbooks/"+@name+".yaml", "w+") do |f|
         f.write(@body+"\n")
         f.close
-        end
+#        end
       end
     end
   end

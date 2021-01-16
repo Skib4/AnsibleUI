@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 2021_01_13_233330) do
     t.text "command"
     t.string "playbook_path"
     t.string "author"
-    t.string "hostname"
-    t.string "playbook_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "playbook_id"
     t.integer "host_id"
+    t.string "hostname"
+    t.string "playbook_name"
     t.index ["host_id"], name: "index_runs_on_host_id"
     t.index ["playbook_id"], name: "index_runs_on_playbook_id"
   end

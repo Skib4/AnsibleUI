@@ -9,6 +9,7 @@
       <p>Oczekiwane jest potwierdzenie konta: <%= resource.unconfirmed_email %></p>
     <% end %>
 <!--- Zwykły użytkownik może zaktualizować wyłącznie hasło --->
+
     <%= f.input :password,
                 :label => 'Hasło',
                 hint: "Pozostaw to pole puste, jeśli nie chcesz zmieniać hasła",

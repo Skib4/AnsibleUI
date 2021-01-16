@@ -157,7 +157,7 @@ class HostsController < ApplicationController
 private
 
   def host_params
-   params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port, :ssh_user, :passwordssh)
+   params.require(:host).permit(:hostname, :ip_addr, :description, :ssh_port, :ssh_user, :passwordssh, :host_id)
   end
 
   def refresh

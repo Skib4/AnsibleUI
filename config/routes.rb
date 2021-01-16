@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'user/index'
-  get 'user/show'
-  get 'user/new'
-  get 'user/edit'
-  get 'user/create'
-  get 'user/update'
-  get 'user/destroy'
+  get 'user/index' => 'user#index'
+  get 'user/show' => 'user#show'
+  get 'user/new' => 'user#new'
+  get 'user/create' => 'user#create'
+
   get 'locale', to: 'locales#save_locale', as: :set_locale
 
   devise_for :users, :path_prefix => 'app'
@@ -68,20 +66,5 @@ end
       get :confirm_destroy
     end
   end
-
-#  devise_scope :user do
-#    root :to => 'static#index'
-#  end
-
-  #get '/user' => "static#index", :as => :user_root
-
-#def after_sign_in_path_for(resource_or_scope)
-#  get 'static#index'
-#end
-
-#def after_sign_out_path_for(resource_or_scope)
-#  # your_path
-#end
-
 
 end

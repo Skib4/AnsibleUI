@@ -69,7 +69,7 @@ end
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :surname, :approved, :admin)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :surname, :approved, :admin, :host_id )
   end
 
   def is_admin

@@ -1,3 +1,8 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 class="form-inline justify-content-center">Wyniki uruchomień</h4>
+    <hr>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -7,4 +12,20 @@
     <th>Rezultat</th>
   </tr>
   </thead>
+  <tbody>
+    <% @runs.each do |run| %>
+
+    <tr>
+      <td><%= run.id %></td>
+      <td><%= run.playbook_path %></td>
+      <td><%= run.hostname %></td>
+    </tr>
+    <% end %>
+ </tbody>
 </table>
+<hr>
+<p><a class="btn btn-secondary" href="<%= posts_path %>" role="button">Powrót </a></p>
+
+
+
+  </div>
