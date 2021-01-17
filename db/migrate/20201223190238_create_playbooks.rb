@@ -7,7 +7,6 @@ class CreatePlaybooks < ActiveRecord::Migration[6.0]
       t.string :url
       t.text :body
       t.string :path
-
       t.timestamps
     end
   end

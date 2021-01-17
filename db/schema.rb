@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_233330) do
+ActiveRecord::Schema.define(version: 2021_01_16_205256) do
 
   create_table "hosts", force: :cascade do |t|
     t.string "hostname"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_01_13_233330) do
     t.integer "host_id"
     t.string "hostname"
     t.string "playbook_name"
+    t.text "output"
     t.index ["host_id"], name: "index_runs_on_host_id"
     t.index ["playbook_id"], name: "index_runs_on_playbook_id"
   end

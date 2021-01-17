@@ -17,3 +17,11 @@ $(document).on('turbolinks:load', function() {
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
+
+$(".spinner").hide();
+
+  $(document).ajaxStart(function() {
+    $(".spinner").fadeIn('slow');
+  }).ajaxStop(function() {
+      $(".spinner").hide();
+  });

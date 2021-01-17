@@ -3,28 +3,8 @@ class HostsController < ApplicationController
   after_action :refresh, :refresh_file
   require 'active_support'
 
-  #include BCrypt
-
-#  def encrypt(text)
-#    text = text.to_s unless text.is_a? String
-#    len   = ActiveSupport::MessageEncryptor.key_len
-#    salt  = SecureRandom.hex len
-#    key   = ActiveSupport::KeyGenerator.new(Rails.application.secrets.secret_key_base).generate_key salt, len
-#    crypt = ActiveSupport::MessageEncryptor.new key
-#    encrypted_data = crypt.encrypt_and_sign text
-#    "#{salt}$$#{encrypted_data}"
-#  end
-
-#  def decrypt(text)
-#    salt, data = text.split "$$"
-#    len   = ActiveSupport::MessageEncryptor.key_len
-#    key   = ActiveSupport::KeyGenerator.new(Rails.application.secrets.secret_key_base).generate_key salt, len
-#    crypt = ActiveSupport::MessageEncryptor.new key
-#    crypt.decrypt_and_verify data
-#  end
-
   def index
-    @hosts = Host.all
+    @hosts = Host.page(params[:page]).per(10)
   end
 
   def new
@@ -41,7 +21,6 @@ class HostsController < ApplicationController
     @hstn = @X['hostname']
     @ip = @X['ip_addr']
     @ssh = @X['ssh_port']
-    #@pass = @X['passwordssh']
     @host = Host.new(host_params)
 
     if @host.save
@@ -55,7 +34,6 @@ class HostsController < ApplicationController
     else
       render action: 'new'
     end
-    #redirect_to hosts_path
   end
 
   def edit
@@ -63,6 +41,10 @@ class HostsController < ApplicationController
   end
 
   def show
+    @host = Host.find(params[:id])
+  end
+
+  def show_ssh
     @host = Host.find(params[:id])
   end
 
@@ -82,10 +64,12 @@ class HostsController < ApplicationController
     @command_ping ="ping -c 4 "+@ip+" > /etc/ansible/tmp/ping_"+@id.to_s
 
     # sprawdzenie czy frazy ktore oznaczaja blad polaczenia sie pojawily
-    @ping_file_pre_test="cat /etc/ansible/tmp/ping_"+@id.to_s+" | grep '4 packets transmitted, 0 packets received' > /etc/ansible/tmp/ping_pre_"+@id.to_s
+    @ping_file_pre_test="cat /etc/ansible/tmp/ping_"+@id.to_s+" | grep '4 packets transmitted, 0 received' > /etc/ansible/tmp/ping_pre_"+@id.to_s
 
     #jezeli ww frazy sie nie pojawily to pojawi sie bledy
     @ping_file_test ="[ -s /etc/ansible/tmp/ping_pre_"+@id.to_s+" ] &&  echo '\nTest connection failed' >> /etc/ansible/tmp/PING_OUT || echo '\nTest connection successful' >> /etc/ansible/tmp/PING_OUT "
+    #@ping_file_test ="[ -s /etc/ansible/tmp/ping_pre_"+@id.to_s+" ] &&  echo '\nTest connection successful' >> /etc/ansible/tmp/PING_OUT || echo '\nTest connection failed' >> /etc/ansible/tmp/PING_OUT "
+
     @telnet_file_test ="[ -s /etc/ansible/tmp/telnet_"+@id.to_s+" ] && echo '\nTest connection successful' > /etc/ansible/tmp/TELNET_OUT || echo '\nTest connection failed' > /etc/ansible/tmp/TELNET_OUT "
 
     @test_ping="cat /etc/ansible/tmp/PING_OUT >> /etc/ansible/tmp/ping_"+@id.to_s
@@ -102,25 +86,17 @@ class HostsController < ApplicationController
 
   end
 
-#  def ssh
-#    @host = Host.find(params[:id])
-#    @host.update_attributes(ssh_params)
-#    redirect_to hosts_path
-#  end
-
   def ssh
     @host = Host.find(params[:id])
-    #@ip_addr = @host.ip_addr
-    #@ssh_port = @host.ssh_port
-    #@ssh_user = @host.ssh_user
-    #@ssh_password = @host.passwordssh
-    #@host = Host.find(params[:id])
-    #@savepass = "echo "+@password+" > /etc/ansible/tmp/pass"
-    #@ssh_command ="sshpass -p " + @ssh_password + " ssh-copy-id "+@ssh_user+"@"+@ip+" -p"+@ssh_port+" > /etc/ansible/tmp/ssh_"+@id
-    @ssh_command ="sshpass -p " + @host.passwordssh + " ssh-copy-id -o StrictHostKeyChecking=no "+@host.ssh_user+"@"+@host.ip_addr+" -p"+@host.ssh_port.to_s+" > /etc/ansible/tmp/ssh_"+@host.id.to_s
-    system(@ssh_command)
-    redirect_to hosts_path
 
+    if ( @host.passwordssh == nil )
+      flash[:danger] = "Brak hasła, uzupełnij je edytując hosta!"
+      redirect_to hosts_path
+    else
+    @ssh_command ="unbuffer sshpass -p " + @host.passwordssh + " ssh-copy-id -o StrictHostKeyChecking=no "+@host.ssh_user+"@"+@host.ip_addr+" -p"+@host.ssh_port.to_s+" > /etc/ansible/tmp/ssh_"+@host.id.to_s
+    system(@ssh_command)
+    redirect_to show_ssh_host_path
+  end
   end
 
   def destroy

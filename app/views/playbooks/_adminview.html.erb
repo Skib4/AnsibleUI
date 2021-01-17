@@ -1,6 +1,6 @@
 <h3> Lista playbooków </h3>
 
-<p><%= link_to "Dodaj nowy wpis", new_playbook_path, class: "btn btn-success" %></p>
+<p><%= link_to "Dodaj nowego playbooka", new_playbook_path, class: "btn btn-success" %></p>
 
 <table class="table table-striped">
   <thead>
@@ -9,7 +9,7 @@
       <th>Autor</th>
       <th>Nazwa</th>
       <th>Opis</th>
-      <th>Ścieżka</th>
+      <th>Uruchomień</th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +19,8 @@
         <td><%= playbook.author %></td>
         <td><%= playbook.name %></td>
         <td><%= playbook.description %></td>
-        <td><%= playbook.path %></td>
+        <td><%= playbook.runsnumber %></td>
+
 
         <td>
           <%= link_to "Pokaż", playbook_path(playbook), class: "btn btn-success btn-xs" %>

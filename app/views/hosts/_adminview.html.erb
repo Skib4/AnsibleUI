@@ -22,8 +22,15 @@
           <%= link_to "Pokaż", host_path(host), class: "btn btn-success btn-xs" %>
           <%= link_to "Edytuj", edit_host_path(host), class: "btn btn-primary btn-xs" %>
           <%= link_to "Usuń", confirm_destroy_host_path(host), class: "btn btn-danger btn-xs" %>
-          <%= link_to "Test połączenia", test_host_path(host), class: "btn btn-warning btn-xs" %>
-          <%= link_to "Dodaj klucz SSH", ssh_host_path(host), class: "btn btn-info btn-xs" %>
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Inne
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to "Test połączenia", test_host_path(host), class: "dropdown-item" %>
+              <%= link_to "Dodaj klucz SSH", ssh_host_path(host), class: "dropdown-item" %>
+            </div>
+        </div>
         </td>
       </tr>
     <% end %>

@@ -1,5 +1,4 @@
 <div class="jumbotron">
-<!--  <h2 class="display-4, text-align:center">Wynik testu połączenia</h2> -->
   <h2 class="form-inline justify-content-center">Wynik testu połączenia</h2>
   <p class="lead">
   <table class="table table-striped">
@@ -32,14 +31,7 @@
       <pre>
       <%= render file: '/etc/ansible/tmp/telnet_'+@host.id.to_s.html_safe %>
       </pre>
-      <p><a class="btn btn-primary" href="<%= hosts_path %>" role="button">Powrót</a></p>
+      <p><a class="btn btn-secondary" href="<%= hosts_path %>" role="button">Powrót</a></p>
   </div>
 </div>
 </div>
-
-
-
-
-
-
-

@@ -2,7 +2,7 @@ class PlaybooksController < ApplicationController
   before_action :authenticate_user!
   after_action :update_file
   before_action :update_file
-  
+
   def new
     @playbook = Playbook.new(author: session[:author])
     @playbook.author= current_user.name + " " + current_user.surname
@@ -19,11 +19,12 @@ class PlaybooksController < ApplicationController
 
 
     if (@url == nil)
-      @playbook.save
       File.open("/etc/ansible/playbooks/"+@name+".yaml", "w+") do |f|
         f.write(@bd+"\n")
         f.close
       end
+      @playbook.save
+
       flash[:notice] = "Playbook dodany pomyślnie"
       redirect_to playbooks_path
 
@@ -46,7 +47,7 @@ class PlaybooksController < ApplicationController
   end
 
   def index
-    @playbooks = Playbook.all
+    @playbooks = Playbook.page(params[:page]).per(10)
   end
 
   def show
@@ -98,13 +99,12 @@ class PlaybooksController < ApplicationController
       @body =  playbook.body
       @url = playbook.url
 
-#      if (@url == nil )
       system("rm -rf /etc/ansible/playbooks/"+@name+".yaml")
       File.open("/etc/ansible/playbooks/"+@name+".yaml", "w+") do |f|
         f.write(@body+"\n")
         f.close
-#        end
       end
-    end
+   end
   end
+
 end

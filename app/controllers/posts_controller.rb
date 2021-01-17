@@ -1,27 +1,20 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
-# wszystkie poniższe akcje odpowiadają akcjom standardowego kontrolera rest'owego
   def new
-    @post = Post.new(author: session[:author])
+    @post = Post.new()
     @post.author= current_user.name + " " + current_user.surname
   end
 
-# metoda do obsługi zapisywania nowych postów
   def create
-    # kazdy model Active Record w konstruktorze może przyjąć hasha z wartościami wszystkich atrybutów które chcielibyśmy przypisać przy tworzeniu obiektu
-    # strong parameters - oznacza które parametry są bezpieczne do przypisania w danym kontrolerze - tu przez metode post_params
     @post = Post.new(post_params)
     if @post.save
       @post.save
-      # Ustawiamy sesję/cookies aby zapamietac autorow
-      session[:author] = @post.author
-      # wartość wiadomości flashowej dodajemy w tym żądaniu lecz jej wartość zostanie wyświetlona w kolejnym (po przekierowaniu)
       flash[:notice] = "Post dodany pomyślnie"
     else
       render action: 'new'
     end
-    redirect_to posts_path
+#    redirect_to posts_path
   end
 
   def edit
@@ -29,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per(5)
+    @posts = Post.page(params[:page]).per(10)
   end
 
   def published
@@ -62,14 +55,9 @@ class PostsController < ApplicationController
       end
   end
 
-# t.string "author"
-# t.boolean "published"
-# t.date "created"
-# t.text "body"
 
   private
-  #metoda zwraca hasha w którym atrybuty które chcemy masowo przypisać zostaną oznaczone jako bezpieczne
-  # title, author, body i published sa oznaczone jako bezpieczne atrybuty
+
   def post_params
     params.require(:post).permit(:title, :author, :body, :published)
   end

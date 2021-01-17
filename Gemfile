@@ -86,4 +86,7 @@ gem 'activemodel-ipaddr_validator'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'activesupport'
 gem "font-awesome-rails"
+gem 'dotenv-rails'
+gem 'pg'
+
 #gem 'bootstrap-icons-helper'

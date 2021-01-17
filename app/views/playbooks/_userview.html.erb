@@ -6,7 +6,7 @@
       <th>Autor</th>
       <th>Nazwa</th>
       <th>Opis</th>
-      <th>Ścieżka</th>
+      <th>Uruchomień</th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +16,7 @@
         <td><%= playbook.author %></td>
         <td><%= playbook.name %></td>
         <td><%= playbook.description %></td>
-        <td><%= playbook.path %></td>
+        <td><%= playbook.runsnumber %></td>
         <td>
           <%= link_to "Pokaż", playbook_path(playbook), class: "btn btn-success btn-xs" %>
         </td>

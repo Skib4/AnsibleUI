@@ -96,6 +96,10 @@ GEM
     devise-bootstrap-views (1.1.0)
     devise-i18n (1.9.2)
       devise (>= 4.7.1)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
     ffi (1.13.1)
@@ -157,6 +161,7 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    pg (1.2.3)
     public_suffix (4.0.6)
     puma (4.3.6)
       nio4r (~> 2.0)
@@ -288,6 +293,7 @@ DEPENDENCIES
   devise
   devise-bootstrap-views
   devise-i18n
+  dotenv-rails
   font-awesome-rails
   jbuilder (~> 2.7)
   jquery-rails (~> 4.3, >= 4.3.3)
@@ -295,6 +301,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.2)
   mini_magick
+  pg
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
   rails-i18n

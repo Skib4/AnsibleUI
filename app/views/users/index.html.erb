@@ -8,6 +8,7 @@
       <th>Nazwisko</th>
       <th> <i class="fa fa-envelope" aria-hidden="true"></i> Email</th>
       <th> <i class="fa fa-check" aria-hidden="true"></i> Uprawniony do logowania?</th>
+      <th> <i class="fa fa-check" aria-hidden="true"></i> Admin?</th>
       <th> <i class="fa fa-list" aria-hidden="true"></i></i> Akcje</th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
         <td><%= user.surname %></td>
         <td><%= user.email %></td>
         <td><%= user.approved ? "tak" : "nie" %></td>
+        <td><%= user.admin ? "tak" : "nie" %></td>
         <td>
           <% if user.id == 1 || user.id == current_user.id  %>
           <%= link_to "Pokaż", user_path(user), class: "btn btn-success btn-xs" %>

@@ -25,8 +25,6 @@ Rails.application.routes.draw do
   end
 end
 
-  devise_for :admins
-
   root to: 'static#index'
 
   get 'o-stronie' => 'static#about', as: :about
@@ -42,7 +40,7 @@ end
       get :test
       get :ssh
       get :confirm_ssh
-      get :copy_id
+      get :show_ssh
     end
   end
 

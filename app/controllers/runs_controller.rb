@@ -3,57 +3,76 @@ class RunsController < ApplicationController
 
   def new
     @run = Run.new()
-    @host = Host.all
-    @playbook = Playbook.all
-    @run.author= current_user.name + " " + current_user.surname
+#    @run.author = current_user.name + " " + current_user.surname
   end
 
   def create
-  @host_ids =   run_params[:host_id].map(&:clone)
 
-    @host_ids.each   do |u|
+  if ( run_params[:host_id] == nil )
+      flash[:danger] = "Musisz wybrać co najmniej jednego hosta!"
+      redirect_to new_run_path
+  else
+  @host_ids =   run_params[:host_id].map(&:clone)
+  @bash_command = run_params[:command]
+
+  if (@bash_command == nil)
+
+    @host_ids.each  do |u|
         @run = Run.new(run_params)
+        @run.author = current_user.name + " " + current_user.surname
         @playbook = Playbook.find(run_params[:playbook_id])
         @playbook_path = @playbook.path
         @playbook_id = @playbook.id
         @hostname = Host.find(u).hostname
-
-        @command = "ansible-playbook " + @playbook_path + " --limit " + @hostname +  " >> /etc/ansible/tmp/run_host_#{u}_playbook_" + @playbook_id.to_s
+        @run.author= current_user.name + " " + current_user.surname
+        @command = "unbuffer ansible-playbook " + @playbook_path + " --limit " + @hostname +  " > /etc/ansible/tmp/run_host_#{u}_playbook_" + @playbook_id.to_s
         system(@command)
-
-        
-
+        @run.output = File.read("/etc/ansible/tmp/run_host_#{u}_playbook_" + @playbook_id.to_s)
         @playbook.runsnumber += 1
         @playbook.save
-
         @run.host_id = "#{u}"
         @run.hostname = @hostname
         @run.playbook_path = @playbook_path
-
+   end
         if @run.save
           @run.save
         else
           render action: 'new'
         end
-    end
-    redirect_to runs_path
+        redirect_to runs_path
+
+   else if (@bash_command != nil)
+
+    @host_ids.each   do |u|
+
+        @run = Run.new(run_params)
+        @run.author = current_user.name + " " + current_user.surname
+        @run.playbook_path = @bash_command
+        @run.host_id = "#{u}"
+        @hostname = Host.find(u).hostname
+        @run.author= current_user.name + " " + current_user.surname
+        @command_bash = 'unbuffer ansible '+@hostname+' -a "' + @bash_command + '" > /etc/ansible/tmp/run_host_'+@run.host_id.to_s+'_command'
+        system(@command_bash)
+        @run.output = File.read("/etc/ansible/tmp/run_host_"+@run.host_id+"_command")
+        @run.hostname = @hostname
+   end
+       if @run.save
+        @run.save
+       else
+        render action: 'new'
+       end
+       redirect_to runs_path
   end
+  end
+  end
+end
 
   def edit
     @run = Run.find(params[:id])
   end
 
   def index
-    @runs = Run.all
-    @hosts = Host.all
-    @playbooks = Playbook.all
-  end
-
-  def execute
-    # Musze wiedziec jakie sa:
-    # a) hosty
-    # b) playbook do wykonania
-    # c) port ssh
+    @runs = Run.page(params[:page]).per(10)
   end
 
   def call_hosts

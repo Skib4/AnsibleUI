@@ -1,5 +1,3 @@
-<!-- partial czyli kod który się powtarza -->
-<!-- Sprawdzamy czy są błędy --->
 <% if @playbook.errors.present? %>
   <div class="alert alert-danger">
     <p>Wystąpiły następujące błędy:</p>
@@ -10,7 +8,7 @@
     </ol>
   </div>
 <% end %>
-<!-- rails generate model playbooks author:string created:date description:text name:string url:string body:text path:strin --->
+
 <%= form_for @playbook do |f| %>
 <div class="form-group">
   <%= f.label :author, "Autor" %>

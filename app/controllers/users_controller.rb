@@ -8,7 +8,7 @@ if params[:approved] == "false"
   flash[:danger] = "User not approved!"
   @users = User.where(approved: false)
 else
-  @users = User.all
+  @users = User.page(params[:page]).per(10)
 end
   end
 

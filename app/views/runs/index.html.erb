@@ -7,22 +7,24 @@
   <thead>
   <tr>
     <th>#</th>
-    <th>Playbook</th>
+    <th>Playbook / bash command</th>
     <th>Host</th>
-    <th>Rezultat</th>
+    <th>Wynik</th>
   </tr>
   </thead>
   <tbody>
     <% @runs.each do |run| %>
-
     <tr>
       <td><%= run.id %></td>
       <td><%= run.playbook_path %></td>
       <td><%= run.hostname %></td>
+      <td><%= link_to "Pokaż", run_path(run), class: "btn btn-success btn-xs" %></td>
     </tr>
     <% end %>
  </tbody>
 </table>
+<%= paginate @runs %>
+
 <hr>
 <p><a class="btn btn-secondary" href="<%= posts_path %>" role="button">Powrót </a></p>
 

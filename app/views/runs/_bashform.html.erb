@@ -11,8 +11,8 @@
 
 <%= form_for @run do |f| %>
 <div class="form-group">
-  <%= f.label :host_id, "Wybierz playbook" %>
-  <%= f.collection_select :playbook_id, Playbook.select(:id, :name), :id, :name, {}, {class: "form-control"} %>
+  <%= f.label :host_id, "Wybierz host (możesz wybrać kilka trzymając CTRL)" %>
+  <%= f.collection_select :host_id, Host.select(:id, :hostname), :id, :hostname, {:include_hidden => false}, {class: "form-control", multiple: true }%>
 </div>
 <div class="form-group">
   <%= f.label :ssh_user, "Komenda bash" %>

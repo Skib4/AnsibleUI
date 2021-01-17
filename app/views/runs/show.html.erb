@@ -1,2 +1,33 @@
-<h1>Runs#show</h1>
-<p>Find me in app/views/runs/show.html.erb</p>
+<h2 class="form-inline justify-content-center">Uruchomienie playbooka nr <%= @run.id %></h2>
+<p class="lead">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Autor</th>
+    <th>Playbook / command </th>
+    <th>Host</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @run.author %></td>
+    <td><%= @run.playbook_path %></td>
+    <td><%= @run.hostname %></td>
+  </tr>
+  </tbody>
+</table>
+<hr>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 class="form-inline justify-content-center">Zwrócony komunikat</h4>
+<hr>
+    <pre>
+      <%= @run.output %>
+    </pre>
+  </div>
+  <hr>
+</div>
+<p><%= run_footer(@run) %></p>
+
+<p><a class="btn btn-secondary" href="<%= runs_path %>" role="button">Powrót</a></p>
+</div>
