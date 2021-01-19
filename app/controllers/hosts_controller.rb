@@ -1,7 +1,9 @@
 class HostsController < ApplicationController
+ # before_action :authenticate, :refresh_file
+
   before_action :authenticate_user!, :refresh_file
   after_action :refresh, :refresh_file
-  require 'active_support'
+#  require 'active_support'
 
   def index
     @hosts = Host.page(params[:page]).per(10)
@@ -21,12 +23,13 @@ class HostsController < ApplicationController
     @hstn = @X['hostname']
     @ip = @X['ip_addr']
     @ssh = @X['ssh_port']
+    @ssh_user = @X['ssh_user']
     @host = Host.new(host_params)
 
     if @host.save
       @host.save
       File.open("/etc/ansible/hosts", "a") do |f|
-        f.write(@hstn +" "+@ip+" ansible_port="+@ssh+"\n")
+        f.write(@hstn +" "+@ip+" ansible_port="+@ssh+" ansible_user="+@ssh_user+"\n")
         f.close
       end
     flash[:notice] = "Host dodany pomyślnie"
@@ -147,9 +150,9 @@ private
       @hstn = host.hostname
       @ip =  host.ip_addr
       @ssh= host.ssh_port
-
+      @ssh_user = host.ssh_user
       File.open("/etc/ansible/hosts", "a+") do |f|
-        f.write(@hstn +" ansible_host="+@ip+" ansible_port="+@ssh.to_s+"\n")
+        f.write(@hstn +" ansible_host="+@ip+" ansible_port="+@ssh.to_s+" ansible_user="+@ssh_user+"\n")
         f.close
       end
     end

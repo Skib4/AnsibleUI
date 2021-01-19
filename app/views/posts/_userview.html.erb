@@ -12,6 +12,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <% if post.published %>
         <td><%= post.id %></td>
         <td><%= post.title.html_safe %></td>
         <td><%= post.author %></td>
@@ -20,6 +21,7 @@
           <%= link_to "Pokaż", post_path(post), class: "btn btn-success btn-xs" %>
         </td>
       </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>

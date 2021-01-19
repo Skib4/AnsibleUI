@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+#  before_action :authenticate
 
   def new
     @post = Post.new()
@@ -12,9 +13,9 @@ class PostsController < ApplicationController
       @post.save
       flash[:notice] = "Post dodany pomyślnie"
     else
-      render action: 'new'
+      flash[:danger] = "Nie dodano posta!"
     end
-#    redirect_to posts_path
+    redirect_to posts_path
   end
 
   def edit

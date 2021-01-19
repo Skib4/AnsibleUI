@@ -30,9 +30,7 @@ end
   get 'o-stronie' => 'static#about', as: :about
   get 'dokumentacja' => 'static#docs', as: :docs
   get 'podrecznik' => 'static#howto', as: :howto
-  get 'warunki-prywatnosci' => 'static#privacy', as: :privacy
   get 'index' => 'static#index', as: :index
-  get 'warunki' => 'static#terms', as: :terms
 
   resources :hosts do
     member do

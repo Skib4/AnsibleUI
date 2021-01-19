@@ -17,6 +17,10 @@ class PlaybooksController < ApplicationController
     @playbook.path = "/etc/ansible/playbooks/"+@playbook.name+".yaml"
     @playbook.runsnumber = 0
 
+    if (@playbook.name.match(/\s/))
+       flash[:danger] = "Nazwa ma byc bez spacji!"
+       redirect_to playbooks_path
+    else
 
     if (@url == nil)
       File.open("/etc/ansible/playbooks/"+@name+".yaml", "w+") do |f|
@@ -35,9 +39,10 @@ class PlaybooksController < ApplicationController
            @playbook.body = File.read("/etc/ansible/playbooks/"+@name+".yaml")
            @playbook.save
          end
+    flash[:notice] = "Playbook dodany pomyślnie"
     redirect_to playbooks_path
     end
-
+    end
   end
 
   def edit

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
+ # before_action :authenticate
   before_action :configure_permitted_parameters, if: :devise_controller?
   add_flash_types :success, :warning, :danger, :info
 
