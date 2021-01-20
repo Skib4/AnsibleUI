@@ -1,7 +1,5 @@
 <h3> Lista playbooków </h3>
-
 <p><%= link_to "Dodaj nowego playbooka", new_playbook_path, class: "btn btn-success" %></p>
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -20,8 +18,6 @@
         <td><%= playbook.name %></td>
         <td><%= playbook.description %></td>
         <td><%= playbook.runsnumber %></td>
-
-
         <td>
           <%= link_to "Pokaż", playbook_path(playbook), class: "btn btn-success btn-xs" %>
           <%= link_to "Edytuj", edit_playbook_path(playbook), class: "btn btn-primary btn-xs" %>

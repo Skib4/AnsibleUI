@@ -93,4 +93,5 @@ class RunsController < ApplicationController
   def refresh
    system("rm -rf /etc/ansible/tmp/run_host_command && rm -rf /etc/ansible/tmp/run_playbook_*")
   end
+
 end

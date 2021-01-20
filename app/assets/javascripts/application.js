@@ -14,14 +14,14 @@ $(document).on('turbolinks:load', function() {
   $('.dropdown-toggle').dropdown()
 })
 
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-
-$(".spinner").hide();
-
-  $(document).ajaxStart(function() {
-    $(".spinner").fadeIn('slow');
-  }).ajaxStop(function() {
-      $(".spinner").hide();
-  });
+//$('#myModal').on('shown.bs.modal', function () {
+//  $('#myInput').trigger('focus')
+//})
+//
+//$(".spinner").hide();
+//
+ // $(document).ajaxStart(function() {
+ //   $(".spinner").fadeIn('slow');
+//  }).ajaxStop(function() {
+//      $(".spinner").hide();
+//  });

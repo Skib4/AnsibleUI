@@ -1,16 +1,14 @@
 class UsersController < ApplicationController
- # before_action :login_required
   before_action :authenticate_user!
   before_action :is_admin
 
   def index
-#   @users = User.all
-if params[:approved] == "false"
-  flash[:danger] = "User not approved!"
-  @users = User.where(approved: false)
-else
-  @users = User.page(params[:page]).per(10)
-end
+     if params[:approved] == "false"
+ 	 flash[:danger] = "User not approved!"
+ 	 @users = User.where(approved: false)
+     else
+ 	 @users = User.page(params[:page]).per(10)
+     end
   end
 
   def show

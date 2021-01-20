@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>Ansible User Interface</title>
@@ -12,10 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="AnsibleUI">
   <meta name="author" content="AS">
-  <!-- Ikonka zakładki -->
   <link rel="icon" href="https://docs.ansible.com/ansible/latest/_static/images/logo_invert.png">
 </head>
 <body>
+
   <% if user_signed_in? %>
     <%= render "layouts/navbar" %>
   <% end %>
@@ -33,9 +32,11 @@
           </div>
         <% end %>
       </div>
+
       <div class="jumbotron">
         <%= yield %>
       </div>
+
     </div>
 
 <%= render "layouts/footer" %>

@@ -1,7 +1,5 @@
 <p>Czy na pewno chcesz usunąć użytkownika?</p>
 <p>
-<!-- tak - wywolanie prawdziwej akcji usuniecia z kontrolera --->
   <%= link_to "Tak", user_path(@user), method: :delete, class: "btn btn-danger" %>
-<!-- nie - skierowanie do listy wszystkich postow --->
-  <%= link_to "Nie", users_path, class: "btn btn-default" %>
+  <%= link_to "Nie", users_path, class: "btn btn-secondary" %>
 </p>

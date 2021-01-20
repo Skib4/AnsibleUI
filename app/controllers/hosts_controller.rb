@@ -1,9 +1,7 @@
 class HostsController < ApplicationController
- # before_action :authenticate, :refresh_file
 
   before_action :authenticate_user!, :refresh_file
   after_action :refresh, :refresh_file
-#  require 'active_support'
 
   def index
     @hosts = Host.page(params[:page]).per(10)
@@ -106,7 +104,6 @@ class HostsController < ApplicationController
     @host = Host.find(params[:id])
     @host.destroy
     flash[:danger] = "Usunięto hosta!"
-#    render action: 'edit_file'
     redirect_to hosts_path
   end
 
