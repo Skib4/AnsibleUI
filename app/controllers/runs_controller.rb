@@ -56,32 +56,14 @@ class RunsController < ApplicationController
        redirect_to runs_path
    end
    end
- end
-
-  def edit
-    @run = Run.find(params[:id])
   end
 
   def index
     @runs = Run.page(params[:page]).per(10)
   end
 
-  def call_hosts
-    @hosts = Host.all
-  end
-
   def show
     @run = Run.find(params[:id])
-  end
-
-  def update
-    @run = Run.find(params[:id])
-    if @run.update_attributes(post_params)
-      flash[:notice] = "Zedytowano post!"
-      redirect_to posts_path
-    else
-      render action: 'edit'
-    end
   end
 
   private

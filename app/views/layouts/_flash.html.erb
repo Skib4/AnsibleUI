@@ -1,0 +1,16 @@
+<div class="container">
+   <div class="page-header">
+    <% if flash[:danger].present? %>
+    	<div class="alert alert-danger">
+            <%= flash[:danger] %>
+    	</div>
+    <% end %>
+    <% if flash[:notice].present? %>
+    <div class="alert alert-success">
+            <%= flash[:notice] %>
+    </div>
+    <% end %>
+   </div>
+</div>
+
+

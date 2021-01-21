@@ -1,8 +1,9 @@
 class User < ApplicationRecord
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :lockable, :trackable
+  devise :database_authenticatable, :registerable, :rememberable, :validatable, :trackable
 
+	validates :email, presence: true
+	 
   def active_for_authentication?
     super && approved?
   end

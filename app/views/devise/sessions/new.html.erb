@@ -7,7 +7,9 @@
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.error_notification %>
+<%= render "layouts/flash", resource: resource %>
+ 
+ <%= f.error_notification %>
 
   <div class="form">
     <%= f.input :email,

@@ -55,12 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gemfile dodane 29112020
 # bootstrap
 gem 'twitter-bootstrap-rails'
-# fake mailer
-gem 'letter_opener'
-# załączanie plików i przetwarzanie ich jako miniaturek
-gem 'carrierwave'
-# dodatek do carrierwave - przetwarza obrazki do miniaturek
-gem 'mini_magick'
 # proste generowanie formularzy
 gem 'simple_form'
 # generowanie formularzy wyszukiwania
@@ -77,10 +71,6 @@ gem 'devise-i18n'
 # jquery
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
-# obsluga plikow
-gem 'carrierwave'
-# do formularzy
-gem 'simple_form'
 # do walidacji adresu IP
 gem 'activemodel-ipaddr_validator'
 gem 'bcrypt-ruby', :require => 'bcrypt'

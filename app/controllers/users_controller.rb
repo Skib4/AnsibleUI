@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
      if params[:approved] == "false"
- 	 flash[:danger] = "User not approved!"
+ 	 flash[:danger] = "Użytkownik jest nieuprawniony!"
  	 @users = User.where(approved: false)
      else
  	 @users = User.page(params[:page]).per(10)
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
    @user = User.new(user_params)
 
    if @user.save
-     flash[:notice] = "User was successfully created!"
+     flash[:notice] = "Utworzono użytkownika!"
      redirect_to users_path
    else
      render :action => 'new'
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     end
 
     if @user.update_attributes(user_params)
-      flash[:notice] = "User was successfully updated!"
+      flash[:notice] = "Edytowano użytkownika!"
       redirect_to users_path
     else
       render :action => 'edit'
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def confirm_destroy
     @user = User.find(params[:id])
     if @user.id == 1
-      flash[:danger] = "You are not allowed to delete main admin!"
+      flash[:danger] = "Nie można usunąć głównego administratora!"
       redirect_to users_path
     end
   end
@@ -61,19 +61,19 @@ class UsersController < ApplicationController
   def destroy
    @user = User.find(params[:id])
    @user.destroy
-   flash[:notice] = "User was successfully deleted."
+   flash[:notice] = "Usunięto użytkownika!"
    redirect_to users_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :surname, :approved, :admin, :host_id )
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :surname, :approved, :admin )
   end
 
   def is_admin
     if current_user.admin == false
-      flash[:danger] = "You are not allowed to see this page!"
+      flash[:danger] = "Użytkownik nieuprawniony!"
       redirect_to root_path
     end
   end
